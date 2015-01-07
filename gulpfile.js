@@ -1,6 +1,6 @@
 var gulp = require('gulp'),
     jade = require('gulp-jade'),
-    //spritesmith  = require('gulp.spritesmith'),
+    spritesmith  = require('gulp.spritesmith'),
     sass = require('gulp-ruby-sass'),
     coffee = require('gulp-coffee'),
     livereload = require('gulp-livereload'),
@@ -32,23 +32,23 @@ gulp.task('sass', function() {
         .pipe(livereload()); // Перезапускаем сервер LiveReload
 });
 
-// gulp.task('sprite', function() {
-//     var spriteData = 
-//         gulp.src('./src/img/icons/*.*') // путь, откуда берем картинки для спрайта
-//             .pipe(spritesmith({
-//                 imgName: 'sprite.png',
-//                 cssName: 'sprite.sass',
-//                 cssFormat: 'sass',
-//                 algorithm: 'binary-tree',
-//                 cssTemplate: 'sass.template.mustache',
-//                 cssVarMap: function(sprite) {
-//                     sprite.name = 's-' + sprite.name
-//                 }
-//             }));
+gulp.task('sprite', function() {
+    var spriteData = 
+        gulp.src('./src/img/icons/*.*') // путь, откуда берем картинки для спрайта
+            .pipe(spritesmith({
+                imgName: 'sprite.png',
+                cssName: '_sprite.sass',
+                cssFormat: 'sass',
+                algorithm: 'binary-tree',
+                cssTemplate: 'sass.template.mustache',
+                cssVarMap: function(sprite) {
+                    sprite.name = sprite.name
+                }
+            }));
 
-//     spriteData.img.pipe(gulp.dest('./public/img/')); // путь, куда сохраняем картинку
-//     spriteData.css.pipe(gulp.dest('./src/sass/')); // путь, куда сохраняем стили
-// });
+    spriteData.img.pipe(gulp.dest('./public/img/')); // путь, куда сохраняем картинку
+    spriteData.css.pipe(gulp.dest('./src/sass/')); // путь, куда сохраняем стили
+});
 
 gulp.task('jade', function(){
     gulp.src('./src/*.jade')
@@ -67,14 +67,14 @@ gulp.task('coffee',function(){
 });
 
 gulp.task('concat', function(){
-  gulp.task('coffee');
+    gulp.task('coffee');
     gulp.src('./public/js/*.js')
         .pipe(concat('scripts.js'))
-    .pipe(gulp.dest('./public/min/'))
+    //.pipe(gulp.dest('./public/min/'))
         .pipe(livereload());
     gulp.src('./public/css/*.css')
         .pipe(concat('screen.css'))
-    .pipe(gulp.dest('./public/min/'))
+    //.pipe(gulp.dest('./public/min/'))
         .pipe(livereload());
 });
 
@@ -110,4 +110,4 @@ gulp.task('imagemin',function(){
       gulp.start('server');
   });
 
- gulp.task('default',['watch','sass','jade','coffee','concat','imagemin']);
+ gulp.task('default',['watch','sprite','sass','jade','coffee','concat','imagemin']);
