@@ -50,7 +50,6 @@ input[type="email"],
 input[type="tel"],
 textarea {
   -webkit-appearance: none;
-  -webkit-border-radius: 0;
   border-radius: 0;
 }
 
@@ -97,7 +96,6 @@ table {
 .slick-slider {
   position: relative;
   display: block;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-touch-callout: none;
@@ -246,7 +244,6 @@ table {
 }
 .slick-dots li.slick-active button {
   opacity: 0.3;
-  -webkit-box-shadow: none;
   box-shadow: none;
 }
 .slick-dots li:before {
@@ -261,11 +258,9 @@ table {
   font: 0/0 a;
   text-shadow: none;
   color: transparent;
-  -webkit-border-radius: 50%;
   border-radius: 50%;
 }
 .slick-dots button:hover {
-  -webkit-box-shadow: none;
   box-shadow: none;
 }
 
@@ -290,11 +285,7 @@ body {
   font-family: Arial, sans-serif;
   font-size: 12px;
   line-height: 1.4;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#aaa));
-  background-image: -webkit-linear-gradient(#ccc, #aaa);
   background-image: linear-gradient(#ccc, #aaa);
   -webkit-animation: rotate 200s linear infinite;
   animation: rotate 200s linear infinite;
