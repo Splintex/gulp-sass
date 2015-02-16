@@ -1,1 +1,1 @@
-npm install gulp gulp-jade gulp-ruby-sass gulp-autoprefixer gulp.spritesmith gulp-coffee gulp-livereload nib gulp-imagemin gulp-uglify gulp-concat connect connect-livereload serve-static --save-dev
+npm install gulp -g --save-dev gulp gulp-sass gulp-autoprefixer gulp.spritesmith gulp-file-include gulp-sourcemaps gulp-livereload gulp-imagemin gulp-concat connect connect-livereload serve-static

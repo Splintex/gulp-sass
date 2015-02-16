@@ -2,28 +2,30 @@ var gulp = require('gulp'),
     //jade = require('gulp-jade'),
     spritesmith  = require('gulp.spritesmith'),
     fileinclude = require('gulp-file-include'),
-    sass = require('gulp-ruby-sass'),
+    sourcemaps = require('gulp-sourcemaps'),
+    sass = require('gulp-sass'),
     livereload = require('gulp-livereload'),
     autoprefixer = require('gulp-autoprefixer'),
     imagemin = require('gulp-imagemin'),
     concat = require('gulp-concat'),
     connect = require('connect'),
-    serveStatic = require('serve-static'),
-    nib = require('nib');
+    serveStatic = require('serve-static');
+    //nib = require('nib');
 
 // sass
 gulp.task('sass', function() {
     gulp.src('./src/sass/*.sass')
-        .pipe(sass({style: 'expanded', 'sourcemap=none': true}))
+        .pipe(sourcemaps.init())
+        .pipe(sass({indentedSyntax: true}))
         .pipe(autoprefixer({
             browsers: ['> 1%', 'last 2 versions', 'Opera 12.1', 'IE 9', 'IE 8'],
             cascade: false
         }))
+        .pipe(sourcemaps.write())
         .on('error', console.log)
         .pipe(gulp.dest('./public/css/')) 
         .pipe(livereload()); 
 });
-
 // spritesmith
 gulp.task('sprite', function() {
     var spriteData = 
