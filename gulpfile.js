@@ -63,6 +63,14 @@ gulp.task('javascript',function(){
        .pipe(livereload());
 });
 
+// fonts
+gulp.task('fonts',function(){
+    gulp.src('./src/fonts/**/*')
+        .on('error', console.log)
+       .pipe(gulp.dest('./public/fonts'))
+       .pipe(livereload());
+});
+
 // concat
 gulp.task('concat', function(){
     gulp.task('javascript');
@@ -112,9 +120,10 @@ gulp.task('fileinclude', function() {
         //gulp.watch('./src/*.jade',['jade']);
         gulp.watch('./src/*.html',['fileinclude']);
         gulp.watch('./src/js/**/*',['javascript']);
+        gulp.watch('./src/fonts/**/*',['fonts']);
         gulp.watch(['./public/js/*.js','./public/css/*.css'],['concat']);
         gulp.watch('./src/img/**/*',['imagemin']);
       gulp.start('server');
   });
 
-gulp.task('default',['watch','sprite','sass','fileinclude','javascript','concat','imagemin']);
+gulp.task('default',['watch','sprite','sass','fileinclude','javascript','fonts','concat','imagemin']);
