@@ -1,0 +1,19 @@
+{
+  "name": "gulp",
+  "version": "1.0.0",
+  "description": "Gulp boilerplate for html+js+css apps",
+  "devDependencies": {
+    "gulp": "^3.8.1",
+    "gulp-sass": "*",
+    "gulp-autoprefixer": "*",
+    "gulp.spritesmith": "*",
+    "gulp-file-include": "*",
+    "gulp-sourcemaps": "*",
+    "gulp-livereload": "*",
+    "gulp-imagemin": "*",
+    "gulp-concat": "*",
+    "connect": "*",
+    "connect-livereload": "*",
+    "serve-static": "*"
+  }
+}
