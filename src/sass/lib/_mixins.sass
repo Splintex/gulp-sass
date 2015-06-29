@@ -1,9 +1,6 @@
 =s($sprite)
 	+sprite($sprite)
 // width
-=r($width)
-	@media only screen and (max-width: $width+ "px")
-		@content
 
 // height
 =rh($height)
@@ -64,7 +61,8 @@
 //simple gradient
 =g($color1, $color2)
 	background-image: linear-gradient($color1, $color2)
-
+=g3($color1, $color2, $color3)
+	background-image: linear-gradient($color1, $color2, $color3)
 =gh($color1, $color2)
 	background-image: linear-gradient(left, $color1, $color2)
 
@@ -72,8 +70,8 @@
 =font($alias, $name)
 	@font-face
 		font-family: $alias
-		src: url("fonts/" + $name + ".eot")
-		src: url("fonts/" + $name + ".eot?#iefix") format("embedded-opentype"), url("fonts/" + $name + ".woff2") format("woff2"), url("fonts/" + $name + ".woff") format("woff"), url("fonts/" + $name + ".ttf") format("truetype")
+		src: url("../fonts/" + $name + ".eot")
+		src: url("../fonts/" + $name + ".eot?#iefix") format("embedded-opentype"), url("../fonts/" + $name + ".woff2") format("woff2"), url("../fonts/" + $name + ".woff") format("woff"), url("../fonts/" + $name + ".ttf") format("truetype")
 		font-weight: normal
 		font-style: normal
 // usage: 
@@ -266,3 +264,11 @@
 	filter: blur($var)
 =scale($var)
 	transform: scale($var)
+	
+=svg($name, $width, $height)
+	background: url("../img/svg/#{$name}.svg") no-repeat 0 0
+	//background-image: inline-image('icons/svg/'+$sprite+'.svg','image/svg'); // to switches sprites to base64, elegant
+	background-size: #{$width}rem #{$height}rem
+	width: #{$width}rem
+	height: #{$height}rem
+	display: inline-block
