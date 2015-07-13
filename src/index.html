@@ -1,27 +1,19 @@
 <!doctype html>
 <html>
 <head>
-	<title>Template</title>
-	@@include('_head.html')
+	<title>index</title>
+	//= includes/head.html
 </head>
 <body>
-<!-- BEGIN  out-->
+<!-- BEGIN out-->
 <div class="out">
-
-	<!-- BEGIN header -->
-	@@include('_header.html')
-	<!-- END header -->
-
-	<h1>Simple gulp template</h1>
-	<a href="#" class="icon-codedby"></a><a href="#" class="icon-coderiver"></a>
+	//= includes/header.html
+	<h1>Holla</h1>
+	<i class="icon-marker"></i>
+	<i class="icon-smile-svg"></i>
 </div>
-<!-- END out-->
-
-<!-- BEGIN footer -->
-@@include('_footer.html')
-<!-- END footer -->
-
+//= includes/footer.html
 <!-- load scripts -->
-<script src="js/lib/head.js" data-headjs-load="js/init.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

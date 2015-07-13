@@ -19,7 +19,6 @@ input[type="email"],
 input[type="tel"],
 textarea
     -webkit-appearance: none
-    border-radius: 0
 input[type="submit"],
 button
     cursor: pointer
@@ -47,10 +46,10 @@ table
 
 // box-sizing model reset
 
-// html
-//     +box
-// *
-//     +box
-//     &:before,
-//     &:after
-//         +box
+html
+    +box
+*
+    +box
+    &:before,
+    &:after
+        +box

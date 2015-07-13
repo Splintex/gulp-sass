@@ -47,20 +47,16 @@
 // p
 // 	+jpg(bla)
 
-
 body
 	font-family: Arial, sans-serif 
-	font-size: 12px 
+	font-size: 1.2rem
 	line-height: 1.4
-	+box
-	+g(#ccc,#aaa)
-	animation: rotate 200s linear infinite
-// common blocks  
+	color: #000 
+	min-width: 1100px
 
-.icon-codedby
-	margin-right: 15px
+.icon-marker
 	display: inline-block
-	+s($codedby)
-.icon-coderiver
+	+s($marker)
+.icon-smile-svg
 	display: inline-block
-	+s($coderiver)
+	+svg(smile,100,100)
