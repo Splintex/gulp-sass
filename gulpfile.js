@@ -56,7 +56,7 @@ var config = {
     },
     tunnel: true,
     host: 'localhost',
-    port: 9000,
+    port: 8080,
     logPrefix: "Frontend_Devil"
 };
 
