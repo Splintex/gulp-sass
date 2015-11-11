@@ -1,0 +1,62 @@
+@font-face
+	font-family: "svgfont"
+	src: url('../fonts/svgfont.eot')
+	src: url('../fonts/svgfont.eot?#iefix') format('eot'), url('../fonts/svgfont.woff') format('woff'), url('../fonts/svgfont.woff2') format('woff2'), url('../fonts/svgfont.ttf') format('truetype')
+	font-weight: normal
+	font-style: normal
+
+$icon-arr-l: "\EA01"
+$icon-arr-r: "\EA02"
+$icon-location: "\EA03"
+$icon-lock: "\EA04"
+$icon-vk: "\EA05"
+$icon-count: "\EA06"
+$icon-plumb: "\EA07"
+$icon-drill: "\EA08"
+$icon-paint: "\EA09"
+$icon-brick: "\EA10"
+$icon-checked: "\EA11"
+$icon-cart: "\EA12"
+$icon-phone: "\EA13"
+
+
+%icon
+	font-family: "svgfont"
+	font-style: normal
+	font-weight: normal
+	text-rendering: auto
+	speak: none
+	line-height: 1
+	-webkit-font-smoothing: antialiased
+	-moz-osx-font-smoothing: grayscale
+
+.icon, [class^="icon-"], [class*=" icon-"]
+	@extend %icon
+	display: inline-block
+
+.icon-arr-l:before
+	content: $icon-arr-l
+.icon-arr-r:before
+	content: $icon-arr-r
+.icon-location:before
+	content: $icon-location
+.icon-lock:before
+	content: $icon-lock
+.icon-vk:before
+	content: $icon-vk
+.icon-count:before
+	content: $icon-count
+.icon-plumb:before
+	content: $icon-plumb
+.icon-drill:before
+	content: $icon-drill
+.icon-paint:before
+	content: $icon-paint
+.icon-brick:before
+	content: $icon-brick
+.icon-checked:before
+	content: $icon-checked
+.icon-cart:before
+	content: $icon-cart
+.icon-phone:before
+	content: $icon-phone

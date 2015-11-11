@@ -12,6 +12,7 @@
 	-ms-touch-action: pan-y
 	touch-action: pan-y
 	-webkit-tap-highlight-color: transparent
+	text-align: center
 .slick-list
 	position: relative
 	overflow: hidden
@@ -55,6 +56,7 @@
 	float: left
 	height: 100%
 	min-height: 1px
+	text-align: center
 	img
 		display: block
 		max-width: 100%
@@ -76,33 +78,48 @@
 .slick-next
 	position: absolute
 	top: 50%
-	margin-top: -14px
+	margin-top: -0.8rem
 	+hide-text
-	height: 50px
+	height: 1.6rem
 	background: none
+	
+	+r(768)
+		margin-top: -1.25rem
+		height: 2.5rem
+	&:hover
+		&:before
+			color: $red 
 	&:focus
 		outline: none
 	&.slick-disabled
 		opacity: 0.2
-	&:before
-		height: 50px
-		line-height: 50px
+	&:before		
+		color: $yellow
+		font-size: 1.6rem
+		transition: color .2s
+		+icon
+		+r(768)
+			font-size: 2.5rem
+			
 .slick-prev
-	left: 0
+	left: -2rem
+	+r(768)
+		left: 0
+		z-index: 10
 	&:before
-		content: "←"
+		content: $icon-arr-l
 		display: inline-block
 		vertical-align: middle
-		font-size: 61px
-		color: #fff 
+		
 .slick-next
-	right: 0
+	right: -2rem
+	+r(768)
+		right: 0
+		z-index: 10
 	&:before
-		content: "→"
+		content: $icon-arr-r
 		display: inline-block
 		vertical-align: middle
-		font-size: 61px
-		color: #fff 
 .slick-dots
 	text-align: center
 	position: absolute
@@ -116,16 +133,16 @@
 		padding: 0 3px 
 		&.slick-active
 			button
-				opacity: 0.3
 				box-shadow: none
+				background: #ffd460 !important
 		&:before
 			display: none 
 				 
 	button
 		display: block
-		width: 6px
-		height: 6px
-		background: #fff
+		width: 1.2rem
+		height: 1.2rem
+		background-color: #daddde !important
 		cursor: pointer
 		+hide-text
 		border-radius: 50% 

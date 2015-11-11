@@ -1,0 +1,3655 @@
+// # SHORT HOWTO
+// ## Sprites
+//     .whatever
+//          +sized-sprite($icons, coderiver) //or
+// 			+s(codedby) //gets default value for spritemap as $icons
+// ### animation example
+//     +include keyframes(rotate)
+//        from
+//           +rotate(0)
+//        to
+//           +rotate(360)
+// ## animation usage    
+//     body:hover
+// 	    +animation(rotate 200s linear infinite)
+// ## animations easing, see easings.net for full list and examples, tnx @ai
+//     transition: all 1.2s ceaser($ease-in)
+// ## gradient example
+//     +background-image(linear-gradient(#232323, #5c5c5c));
+//     +g(#232323, #5c5c5c);
+//	   horizontal
+//     +gh(#232323, #5c5c5c);
+// ## making bw-images
+//     img
+//			@extend %gray
+// ## predefined media-queries: https://github.com/paranoida/sass-mediaqueries
+//     +min-screen(320)
+//			display: none
+// +max-screen(1000), +iphone5, +iphone4, +ipad-retina, +ipad, +hdpi - also available
+//
+// ## use cycles
+//     @for $i from 1 through 3
+//       .item-#{$i}
+//			width: 2em * $i;
+//     @each $s in a,b,c
+// 	    	#{$s}
+//				display: none
+// ## fonts 
+// Save fonts to /css/fonts, after that write (eot, woff, ttf):
+// +font(book, cytiapro-black-webfont)  
+// =book
+// 	font-family: "book", Arial, sans-serif 
+// insert pics into css
+// div
+// 	+pic("blabla.png")
+// span
+// 	+png(blabla)
+// p
+// 	+jpg(bla)
+
+	
+html
+	font-size: 62.5%
+	+selection
+		background: rgba(#000, .2) 
+form
+	background: none
+body
+	font-size: 1.4rem
+	line-height: 1.4
+	min-width: 320px
+	letter-spacing: .3px
+	position: relative
+	&.has-open-menu
+		+r(1000)
+			.header,
+			.footer,
+			.main
+				transform: translateX(-25.3rem)
+				
+			.menu-mob
+				transform: translateX(0)
+			.overlay_transparent
+				visibility: visible 
+				opacity: 1
+		+r(320)
+			.header,
+			.footer,
+			.main
+				transform: translateX(-22rem)
+	&.has-open-sidebar
+		+r(1000)
+			.header,
+			.footer,
+			.main
+				transform: translateX(30rem)
+			.open-sidebar
+				transform: translateX(0)
+			.sidebar-btn
+				//transform: translateX(0)
+				.btn-close
+					visibility: visible 
+					opacity: 1 
+			.overlay
+				opacity: 1
+				visibility: visible
+			.sidebar-mob 
+				&.open-sidebar
+					.btn-close
+						transform: translateX(4rem)
+		+r(350)
+			.header,
+			.footer,
+			.main
+				transform: translateX(22rem)
+	&.has-open-bar
+		+r(1000)
+			.header,
+			.footer,
+			.main
+				transform: translateX(30rem)
+			.open-bar
+				transform: translateX(0)
+			.sidebar-btn
+				//transform: translateX(0)
+				.btn-close
+					visibility: visible 
+					opacity: 1 
+			.overlay
+				opacity: 1
+				visibility: visible
+		.sidebar-mob
+			&.open-bar
+				.btn-close
+					transform: translateX(4rem)
+		+r(350)
+			.header,
+			.footer,
+			.main
+				transform: translateX(22rem)
+	&.has-open-section
+		+r(767)
+			.header,
+			.footer,
+			.main
+				transform: translateX(28rem)
+			.section-mob
+				transform: translateX(0rem)
+				.btn-close
+					transform: translateX(4rem)
+			.sidebar-btn
+				//transform: translateX(0)
+				.btn-close
+					visibility: visible 
+					opacity: 1 
+			.overlay
+				opacity: 1
+				visibility: visible
+			
+		+r(350)
+			.header,
+			.footer,
+			.main
+				transform: translateX(22rem)
+	&.has-open-filter
+		+r(767)
+			.header,
+			.footer,
+			.main
+				transform: translateX(-28.9rem)
+			.filter-mob
+				transform: translateX(0rem)
+				.btn-close
+					transform: translateX(-4rem)
+			.sidebar-btn
+				//transform: translateX(0)
+				.btn-close
+					visibility: visible 
+					opacity: 1 
+			.overlay
+				opacity: 1
+				visibility: visible			
+		+r(350)
+			.header,
+			.footer,
+			.main
+				transform: translateX(-22rem)
+	&.has-open-modal
+		.modal
+			visibility: visible 
+			opacity: 1
+label
+	width: 100%	
+a
+	text-decoration: none
+	&:hover,
+	&:focus
+		text-decoration: none
+ol
+	li
+		list-style-type: decimal
+.out
+	overflow: hidden
+.col-xs-6,
+.col-xs-5,
+.col-xs-7
+	+r(350)
+		width: 100%
+	&.no-hundred
+		+r(350)
+			width: 50%
+.hidden-md 
+	+r(1000)
+		display: none
+.shown-md
+	display: none
+	+r(1000)
+		display: block
+.shown-sm
+	+r(767)
+		display: block
+.main
+	transition: transform .3s
+	padding-bottom: 2.5rem 
+.nets
+	font-size: 0
+	&__name
+		display: inline-block
+		margin-right: 0.8rem
+		vertical-align: middle
+		font-size: 1.4rem
+		+reg
+		color: $text  
+		+r(1000)
+			margin-right: 0
+	&__item	
+		display: inline-block
+		width: 2.8rem
+		height: 2.8rem
+		border-radius: 50%
+		background-color: $text
+		+vertical
+		margin-left: .6rem
+		transition: opacity .2s
+		+r(767)
+			width: 2.1rem
+			height: 2.1rem
+		&:first-child
+			margin-left: 0
+		&:hover
+			opacity: .7 
+		img
+			display: inline-block
+			vertical-align: middle
+			height: auto
+		&.is-vk
+			background-color: #4e7baa 
+			.nets__icon
+				&:before
+					content: $icon-vk
+					font-size: 1.1rem
+					color: #fff 
+					+icon
+					+r(767)
+						font-size: .85rem 
+		&.is-facebook
+			background-color: #649cd2
+			img
+				width: .7rem
+				+r(767)
+					width: .55rem 
+			
+		&.is-twitter
+			background-color: #1ab2e8
+			img
+				width: 1.3rem
+				+r(767)
+					width: 1rem
+		&.is-gplus
+			background-color: #D96B6C 
+			img
+				width: 1.4rem
+				+r(767)
+					width: 1.2rem
+	&__icon
+		vertical-align: middle
+		display: inline-block 
+
+
+
+.list
+	&__item
+		margin-bottom: 2rem
+		font-size: 0
+		a
+			display: inline-block
+			padding-left: 4rem 
+			position: relative
+			&:hover
+				span
+					border-color: transparent
+	span		
+		font-size: 1.4rem
+		color: $main-dark
+		border-bottom: 1px solid $main-dark
+		transition: border-color .2s
+		line-height: 1.3
+		vertical-align: middle
+		letter-spacing: 0
+		+reg 
+		+r(767)
+			font-size: 1.3rem
+	&__icon
+		width: 2.7rem 
+		position: absolute
+		left: 0
+		display: inline-block
+		vertical-align: middle
+		text-align: center
+	&__link
+		padding-left: 4rem
+		margin-bottom: 2rem
+		a
+			color: $red
+		span
+			border-bottom: 1px solid $red
+			transition: border-color .2s
+			color: $red
+			margin-right: .9rem 
+			+italic
+		&:hover
+			span
+				border-color: transparent
+	&_orange
+		padding: 4.4rem 0 1.5rem 2rem
+		+r(767)
+			padding: 2rem 0 1rem 2rem 
+		li
+			color: $orangead 
+			font-size: 1.5rem
+			+reg
+			margin-top: 1.8rem
+			+r(767)
+				font-size: 1.25rem 
+				margin-top: 1.3rem 
+			&:first-child
+				margin-top: 0
+	&_simple
+		li
+			margin-bottom: 1.9rem
+			font-size: 1.5rem 
+			+reg
+			color: $main-dark 
+			+r(767)
+				font-size: 1.25rem 
+		a
+			color: $main-dark 
+			line-height: 1
+			border-bottom: 1px solid $main-dark
+			transition: border-color .2s
+			font-size: 1.5rem
+			&:hover
+				border-color: transparent
+	&_grey
+		li
+			font-size: 1.6rem
+			margin-bottom: 2.5rem
+			+reg
+			color: $text 
+			+r(767)
+				font-size: 1.5rem
+				margin-bottom: 1rem
+		a
+			font-size: 1.6rem
+			color: $main-dark 
+			line-height: 1
+			border-bottom: 1px solid $main-dark
+			transition: border-color .2s
+			+r(767)
+				font-size: 1.5rem			
+			&:hover
+				border-color: transparent
+	&_disc
+		li
+			position: relative
+			padding-left: 2rem
+			color: $text
+			font-size: 1.5rem
+			margin-bottom: 2rem 
+			+reg 
+			+r(767)
+				font-size: 1.25rem 
+			&:before
+				content: ""
+				position: absolute
+				height: .6rem
+				width: .6rem
+				left: 0
+				margin-top: .7rem 
+				border-radius: 50%
+				background-color: $yellow   
+
+.text
+	+reg
+	font-size: 1.5rem 
+	color: $text 
+	margin-bottom: 2rem 
+	line-height: 1.4
+	+r(767)
+		font-size: 1.25rem 
+		margin-bottom: .7rem 
+	&_dark
+		color: $main-dark 
+	&.with-margins
+		margin: 2.5rem 0 
+		+r(767)
+			margin: 1rem 0 
+.marked
+	color: $red 
+.banner
+	padding: 4rem 0 5.5rem
+	repeat: no-repeat
+	width: 100%
+	margin-bottom: 4rem
+	position: relative
+	+cover
+	+r(767)
+		padding: 1.5rem 0
+		margin-bottom: 1.9rem		 
+.menu
+	background: #FFF 
+	position: absolute
+	width: 100%
+	height: 7.2rem
+	line-height: 7.2rem 
+	visibility: hidden
+	opacity: 0
+	z-index: 0
+	transition: opacity .2s
+	top: 3rem
+	&.is-active
+		opacity: 1
+		visibility: visible 
+		z-index: 3 
+	+r(1000)
+		display: none
+	&__menu
+		display: table
+		width: 100%
+		white-space: nowrap
+		text-align: center
+		padding-right: 1.5rem 
+		position: relative
+	&__item
+		display: table-cell
+		text-align: center 
+		margin-left: 1rem
+		padding: 0 1rem 
+		&:first-child,
+		&:last-child
+			text-align: left
+		&:first-child
+			margin-left: 0
+			padding-left: 0
+		a	
+			display: block
+			font-size: 1.6rem
+			+bold
+			text-transform: capitalize
+			color: $main-dark 
+			transition: color .2s
+			&:hover
+				color: $red
+			+r(1000)
+				font-size: 1.3rem
+	.btn-close
+		right: 0.5rem
+		margin-top: -1rem
+.btn-close
+	position: absolute
+	//right: 2.4rem
+	top: 50%
+	width: 2rem
+	height: 2rem
+	background: none 
+	+r(1000)
+		right: 2.3rem
+	 
+	&:before,
+	&:after
+		content: "" 
+		height: .3rem
+		width: 2rem
+		position: absolute
+		top: 50%
+		left: 25%
+		background: #ff181f
+		border-radius: 2px
+		transform-origin: center
+		transition: background .2s
+		+rotate(45deg)
+	&:after
+		+rotate(-45deg)
+	&_white
+		&:before,
+		&:after
+			background: #fff
+
+.logo
+	display: inline-block
+	width: 23rem 
+	+r(767)
+		width: 11.5rem
+	+r(350)
+		width: 9.5rem 
+		margin-top: .2rem 
+	img
+		width: 100%
+		height: auto
+.btn
+	display: inline-block
+	padding: 1.6rem 3.4rem 1.5rem
+	// height: 5.5rem 
+	// line-height: 5.1rem
+	line-height: 1 
+	background-color: transparent
+	border: 2px solid #fff
+	border-radius: 3rem
+	font-size: 0
+	text-align: center
+	vertical-align: middle
+	transition: border-color .2s
+	+r(767)
+		padding: 1.2rem 1.4rem 
+	&:hover
+		border-color: $yellow
+	&:active
+		border-color: $yellow-hover
+	i
+		display: inline-block
+		color: $yellow
+		font-size: 2rem
+		font-family: Verdana, sans-serif
+		font-weight: bold 
+		font-style: normal 
+		+r(767)
+			font-size: .8rem 
+	span
+		+reg
+		font-size: 1.6rem
+		margin-left: 1rem
+		display: inline-block
+		color: #FFF
+		text-transform: uppercase 
+		letter-spacing: 0
+		+r(767)
+			font-size: .8rem 
+			margin-left: 0.5rem
+	&.is-yellow
+		background-color: $yellow
+		border-color: $yellow
+		transition: background-color .2s, border-color .2s
+		&:hover
+			background-color: $yellow-hover
+			border-color: $yellow-hover
+		&:active
+			background-color: $yellow
+			border-color: $yellow
+		// +r(767)
+		// 	height: 3.8rem
+		// 	line-height: 3.6rem				
+	&.is-bigger
+		padding: 1.6rem 6.4rem 1.4rem
+	&.is-yellow-border
+		border-color: $yellow
+		padding: 1.6rem 2.8rem 1.4rem
+		&:hover
+			border-color: $yellow-hover
+		&:active
+			border-color: $yellow
+		// +r(767)
+		// 	// height: 3.8rem
+		// 	// line-height: 3.6rem	
+		// 	padding: 1.6rem 2.8rem 1.4rem			
+	&.is-bold
+		span
+			font-size: 1.4rem
+			+bold 
+			+r(1000)
+				font-size: 1.3rem
+			+r(767)
+				font-size: 1.15rem 
+			+r(350)
+				font-size: 1rem
+	&.is-color
+		span
+			color: $main-dark 
+	&.is-small
+		padding: 1.5rem 2.1rem 
+	&.with-marg-l
+		margin-left: 3rem
+.btn-main
+	padding: 1.6rem 3.5rem 1.5rem
+	display: inline-block
+	vertical-align: middle
+	line-height: 1
+	background-color: $main-dark
+	font-size: 1.4rem
+	color: #FFF
+	text-transform: uppercase
+	+bold	
+	text-align: center   
+	border-radius: 3rem	
+	transition: background-color .2s, box-shadow .2s	
+	&:hover
+		background-color: $main-dark-hover
+		color: #fff 
+	&:active
+		box-shadow: 1px -1px 3px #686767 inset
+		background-color: $main-dark
+	&:focus
+		color: #fff  
+	+r(1000)
+		font-size: 1.3rem
+	+r(767)
+		font-size: 1.1rem 
+		letter-spacing: 0
+		padding: 1.6rem 1.3rem 1.5rem
+	+r(340)
+		display: block
+		width: 100%
+	&.is-yellow
+		font-size: 1.3rem
+		background-color: $yellow 
+		padding: 1.1rem 2.5rem
+		&:hover
+			background-color: $yellow-hover
+		&:active
+			background-color: $yellow
+			box-shadow: 1px -1px 3px $yellow-hover inset 
+	&.is-red
+		background-color: $red-second
+		&:hover
+			background-color: $red-hover
+		&:active
+			background-color: $red-second
+			box-shadow: 1px -1px 3px $red-hover inset 
+	&_radius
+		border-radius: 7px
+		+r(340)
+			display: inline-block
+			width: auto
+
+
+.wrap-right
+	text-align: right
+	font-size: 0
+	+r(767)
+		margin-bottom: 1.35rem
+.wrap-center
+	text-align: center !important
+	font-size: 0
+	+r(374)
+		text-align: right !important
+.wrap-center-sm
+	+r(767)
+		text-align: center !important
+		font-size: 0	
+.wrap-left-sm
+	+r(767)
+		text-align: left
+		font-size: 0
+.wrap-marg-l
+	margin-left: 3.8rem 
+	+r(767)
+		margin-left: 0
+.btn-action
+	display: inline-block
+	margin-left: 3.9rem
+	+r(374)
+		margin-left: 0
+		display: block
+		margin-bottom: 0.5rem
+	&:first-child
+		margin-left: 0
+	i
+		display: inline-block
+		vertical-align: middle
+		margin-right: .4rem 
+	span
+		color: $main-dark
+		border-bottom: 1px dotted $main-dark
+		line-height: 1
+		vertical-align: middle
+		transition: border-color .2s
+		font-size: 1.4rem
+		+bold
+		+r(767)
+			font-size: 1.3rem
+	&:hover
+		span
+			border-color: transparent
+.icon-pen
+	+svg(pen,2,2.1)
+.icon-key
+	+svg(key, 1.9,1.9)
+.icon-coin
+	+svg(coin,2,2)
+.icon-user
+	+svg(user,1.4,1.7)
+.icon-cart
+	&:before
+		font-size: 1.7rem
+		color: $yellow 
+	
+.btn-menu
+	display: inline-block
+	background: none !important
+	font-size: 0 
+	float: right
+	span
+		+reg
+		font-size: 1.6rem
+		letter-spacing: .5px
+		color: #FFF
+		text-transform: uppercase
+		vertical-align: middle
+		+r(767)
+			display: none
+	&:hover
+		.burger__in
+			width: 2.6rem
+.btn-menu-cover
+	width: 100%
+	+clr
+	margin-top: 1.6rem
+	+r(767)
+		margin-top: 0.9rem
+	+r(374)
+		margin-top: 0.6rem
+
+.btn-cart
+	position: relative
+	vertical-align: middle
+	float: left
+	padding-left: 3.4rem 
+	+r(767)
+		display: none
+	&:before
+		content: $icon-cart
+		+icon
+		font-size: 2.7rem
+		color: $yellow 
+		position: absolute
+		left: 0
+		bottom: 0
+		transition: color .2s
+	&__name
+		display: inline-block
+		vertical-align: middle
+		font-size: 1.4rem
+		color: #fff
+		+reg
+		text-transform: uppercase
+		letter-spacing: 0 
+		+r(1000)
+			display: none
+	&__link
+		display: inline-block
+		vertical-align: middle
+		margin-left: .7rem 
+		span
+			border-bottom: 1px solid $yellow
+			color: $yellow
+			line-height: 1
+			letter-spacing: 0 
+			font-size: 1.4rem
+			+reg
+			transition: border-color .2s, color .2s
+	&:hover
+		.btn-cart__link
+			span
+				border-color: transparent
+				color: $yellow-hover
+		&:before
+			color: $yellow-hover 
+
+.burger
+	display: inline-block
+	margin-left: 1rem
+	vertical-align: middle
+	position: relative
+	height: 1.7rem
+	width: 2.6rem
+	
+	&__in
+		height: .3rem
+		position: absolute
+		left: 50%
+		width: 2rem
+		top: 50%
+		left: 50% 
+		background-color: #ff181f
+		border-radius: 2px
+		transition: width .1s
+		transform: translate3d(-50%,-50%,0)
+		&:before,
+		&:after
+			content: ""
+			height: .3rem
+			position: absolute
+			left: 0
+			right: 0
+			background-color: #ff181f
+			border-radius: 2px
+		&:before
+			top: -.7rem
+		&:after
+			bottom: -.7rem
+	&_white
+		.burger__in
+			background: #fff 
+			&:before,
+			&:after
+				background: #fff 	
+.search
+	text-align: center
+	margin-bottom: 2.5rem
+	+r(767)
+		margin-bottom: 1.5rem
+	&__title
+		color: #FFF
+		font-size: 2.7rem
+		+reg  		
+		margin: 5rem 0 3rem 
+		+r(767)
+			display: none
+		&.is-shown
+			+r(767)
+				display: block
+				font-size: 2.25rem 
+				margin: 2.2rem 0 1.3rem
+			+r(374)
+				font-size: 1.6rem
+	&__in
+		position: relative
+		overflow: hidden		
+		input 
+			font-size: 3.2rem
+			text-align: left
+			padding-right: 9rem
+			vertical-align: middle					
+			+reg
+			width: 100%
+			color: #FFF			
+			background: none
+			+r(767)
+				font-size: 1.6rem			 
+			&:focus
+				border-color: rgba(#fff, .7)
+	&__btn
+		content: ""
+		position: absolute
+		+s($search)
+		right: 3.8rem
+		top: 50%
+		margin-top: -9px
+		background-color: transparent
+		+r(767)
+			right: 1rem
+	&__relative
+		position: relative
+		+clr
+		height: 6.2rem
+		line-height: 5.8rem	
+		border: 2px solid #fff
+		border-radius: 3rem
+		transition: border-color .2s
+		+r(767)
+			height: 3.4rem
+			line-height: 2.8rem
+			font-size: 1.4rem
+			margin-top: 1.5rem	
+		
+.select
+	float: left
+	text-align: center
+	z-index: 10
+	cursor: pointer 
+	position: relative
+	padding: 0 2rem 0 4rem
+	margin-right: 2rem
+	+r(767)
+		padding: 0 1rem 0 1.7rem
+		margin-right: 1rem  
+	span
+		color: #FFF
+		font-size: 1.6rem
+		background: none
+		text-align: center
+		cursor: pointer 
+		+reg
+		+r(767)
+			font-size: 1rem
+	&:after 
+		content: ""
+		position: absolute
+		top: 50%
+		margin-top: -.2rem
+		right: 0 
+		+arr(.6,.4,#ffffff,b)
+		transition: border-color .2s
+	&:hover,
+	&:active
+		&:after
+			+arr(.6,.4,$yellow,b)
+	&.is-active
+		&:after
+			+arr(.6,.4,$yellow,b)
+.select-list
+	position: absolute
+	background-color: #fff
+	border-radius: .5rem 
+	top: 7rem
+	left: 1rem
+	line-height: 1
+	transition: opacity .2s
+	opacity: 0
+	z-index: 10
+	visibility: hidden
+	border-bottom: 1px solid rgba($yellow,.2)	
+	+r(767)
+		top: 4rem
+	&.is-active
+		opacity: 1
+		visibility: visible 
+	&:before
+		content: ""
+		position: absolute
+		top: -.3rem
+		right: 2.2rem
+		+arr(.6,.3,#ffffff,t) 
+		+r(767)
+			right: auto
+			left: 0.7rem
+	li
+		font-size: 1.4rem
+		color: #2E2A2B
+		background-color: transparent 
+		+reg
+		padding: .8rem 2rem .8rem 1.7rem  
+		text-align: left
+		transition: background-color .2s
+		cursor: pointer
+		+r(767)
+			font-size: 1.15rem 
+		&:hover
+			background-color: $yellow 
+		&:first-child
+			border-radius: .5rem .5rem 0 0
+			padding-top: 1.5rem 
+		&:last-child
+			border-radius: 0 0 .5rem .5rem
+			padding-bottom: 1.5rem 
+
+.select-wrap
+	font-size: 0
+	.btn-main
+		margin: 0 .5rem
+	.select-filter
+		margin-left: 0.2rem
+	+r(767)
+		margin-bottom: 1rem 
+	&__name
+		font-size: 1.3rem
+		+bold
+		color: $text
+		display: inline-block
+		vertical-align: middle	
+		+r(1000)
+			display: none		
+
+.title
+	font-size: 3rem
+	+bold
+	text-transform: uppercase 
+	margin-bottom: .7rem
+	color: $main-dark  
+	letter-spacing: -.5px
+	+r(767)
+		font-size: 2.5rem
+		letter-spacing: 0
+		font-size: 1.8rem
+		margin-top: 3rem
+	&_smaller
+		font-size: 2.5rem 
+		+r(767)
+			font-size: 1.5rem 
+.name
+	+bold
+	color: #545454
+	font-size: 1.8rem  
+	margin: 1.4rem 0 .4rem 
+	text-transform: uppercase 
+	+r(1000)
+		font-size: 1.5rem 
+	+r(767)
+		font-size: 1.35rem
+.link
+	font-size: 1.3rem
+	color: $red
+	text-transform: uppercase
+	border-bottom: 1px solid $red
+	line-height: 1
+	transition: border-color .2s, color .2s
+	+bold
+	&:hover
+		color: lighten($red, 10%)
+		border-color: transparent
+		text-decoration: none
+	&:active
+		color: darken($red,5%)  
+	&_dark
+		color: $main-dark
+		border-bottom: 1px solid $main-dark
+		transition: border-color .2s
+		+reg
+		font-size: 1.4rem
+		+r(767)
+			font-size: 1.2rem
+		&:hover
+			border-color: transparent 
+			color: $main-dark
+	&_dotted
+		font-size: 1.4rem
+		+reg
+		border-bottom: 1px dotted #5c5c5c
+		color: #5C5C5C
+		transition: border-color .2s
+		&:hover
+			border-color: transparent 
+			color: #5C5C5C
+		+r(767)
+			font-size: 1.1rem
+.border
+	width: 100%
+	height: 1px
+	background-color: $main-light 
+	margin: 4rem 0
+	clear: both
+	+clr
+	+r(767)
+		margin: 2rem -100%
+		width: auto
+	&_short
+		+r(767)
+			margin: 2rem 0 
+	&_wide
+		margin: 2rem -100%
+		width: auto
+	&.with-lessmarg
+		margin: 1.5rem 0 
+		
+
+.add
+	margin-bottom: 3rem
+	+clr
+	+r(1000)
+		width: 100%
+		img
+			width: 100%
+			height: auto
+	+r(350)
+		width: 50%
+		float: left	
+		padding: 0 .5rem
+		margin: .5rem 0
+	&:last-child
+		margin-bottom: 0
+			
+.article
+	h1
+		font-size: 3rem
+		+bold
+		text-transform: uppercase 
+		margin-bottom: 1.8rem
+		color: $main-dark  
+		+r(767)
+			margin-bottom: 0.8rem
+			font-size: 2.5rem
+	p
+		margin-bottom: 2rem
+		color: $text
+		font-size: 1.4rem
+		+reg
+		letter-spacing: .5px
+		line-height: 1.4
+		+r(767)
+			line-height: 1.6
+			font-size: 1.25rem 
+			margin-bottom: 1.6rem
+.partners
+	text-align: center
+	&__slide
+		height: 12.5rem
+		width: auto
+		display: inline-block
+		text-align: center
+		vertical-align: top
+		filter: grayscale(100%)
+		opacity: .8
+		transition: opacity .3s, filter .3s
+		+r(767)
+			height: 6.5rem
+		&:hover
+			opacity: 1
+			filter: grayscale(0)
+		img
+			vertical-align: middle
+			height: 100%
+			width: auto
+			margin: 0 auto
+.prod-card
+	width: 100%
+	display: inline-block
+	&__img
+		border: 1px solid $main-light
+		width: 100%
+		height: auto
+		border-radius: .8rem
+		text-align: center
+		vertical-align: middle
+		overflow: hidden
+		img
+			vertical-align: middle
+			width: 100%
+			height: auto
+	&__name
+		text-align: center
+		margin-top: 1rem
+		span
+			+reg
+			font-size: 16px
+			color: #212121 
+			border-bottom: 1px solid #212121
+			transition: border-color .2s
+			line-height: -1
+			letter-spacing: .5px
+	&:hover
+		.prod-card__name
+			span
+				border-color: transparent
+	&.is-small
+		.prod-card__name
+			span
+				font-size: 1.2rem
+.big-product
+	position: relative
+	margin-bottom: 4rem
+	+r(767)
+		margin-bottom: 6.5rem
+	.slick-slider
+		opacity: 0
+		visibility: hidden
+		transition: opacity .3s
+		&.is-ready
+			opacity: 1
+			visibility: visible 
+		.slick-prev,
+		.slick-next
+			display: none !important
+		.slick-dots
+			bottom: -3.5rem 
+			z-index: 10
+	&__action
+		position: absolute
+		bottom: -3rem
+		right: 0
+		width: 5.2rem
+		+r(767)
+			bottom: -2.1rem 
+			width: 100%
+.nav
+	&__prev,
+	&__next
+		position: absolute
+		top: 0
+		+hide-text
+		height: 1.6rem
+		background: none
+		z-index: 10	
+		+r(767)
+			height: 2.5rem 
+		&:hover
+			&:before
+				color: $red
+		&:focus
+			outline: none
+		&.slick-disabled
+			opacity: 0.2
+		&:before
+			color: $yellow
+			font-size: 1.6rem
+			+icon
+			transition: color .2s
+
+			+r(767)
+				font-size: 2.5rem
+				
+	&__prev
+		left: 0
+		&:before
+			content: $icon-arr-l
+			display: inline-block
+			vertical-align: middle
+	&__next
+		right: 0
+		&:before
+			content: $icon-arr-r
+			display: inline-block
+			vertical-align: middle
+	&__nav
+		display: inline-block
+		vertical-align: middle
+	&__dots
+		text-align: center
+		display: inline-block
+		vertical-align: middle
+		margin: -.5rem 2rem 0	
+		white-space: nowrap	 
+		+r(767)
+			margin: .2rem 0 0
+			text-align: center
+			width: 100% 
+		li
+			position: relative
+			display: inline-block
+			padding: 0 3px 
+			vertical-align: middle
+			&.slick-active
+				button
+					box-shadow: none
+					background: #ffd460 !important
+			&:before
+				display: none 
+					 
+		button
+			display: block
+			width: 1.2rem
+			height: 1.2rem
+			background-color: #daddde !important
+			cursor: pointer
+			+hide-text
+			border-radius: 50% 
+			&:hover
+				box-shadow: none
+.slider
+	position: relative
+	visibility: hidden 
+	opacity: 0
+	margin-top: 2rem
+	+r(767)
+		margin-bottom: 5rem
+	.slick-slider
+		padding-bottom: 5rem
+	.slick-list
+		padding: 1rem 1rem 5rem 1rem
+		margin: -1rem -1rem -5rem -1rem
+		+r(767)
+			padding: 0
+			margin: 0  
+			text-align: center 
+	.card
+		margin: 0
+		+r(768)
+			margin: 0 auto
+		&:hover
+			margin: 0 -1rem 
+			+r(1000)
+				margin: 0  
+			+r(768)
+				margin: 0 auto		
+	&.is-ready
+		visibility: visible
+		opacity: 1
+	.slick-prev,
+	.slick-next
+		bottom: 0
+		top: auto
+		z-index: 2
+	.slick-next
+		right: 1rem
+	.slick-prev
+		left: 1rem
+	&__slide
+		padding: 0 1rem
+	// .slick-prev,
+	// .sick-next
+	// 	padding: 0 .5rem
+	// 	bottom: -3.5rem !important
+	// 	top: auto
+	// 	margin-top: -0.9rem
+	// .slick-prev
+	// 	left: 1.3rem		
+	// .slick-next
+	// 	right: .6rem
+	// 	left: auto
+	// .slick-dots
+	// 	bottom: -3.5rem 
+			 
+		 	
+	&__action
+		position: absolute
+		top: -4.5rem
+		right: 0
+		+r(767)
+			bottom: -3.5rem 
+			width: 100%
+			top: auto
+.gallery
+	padding: 0 3.5rem
+	margin: 2rem 0 2.5rem
+	text-align: center
+	&__img
+		height: 10.4rem
+		width: 13.5rem 
+		border-radius: 5px
+		border: 2px solid transparent
+		position: relative
+		transition: border-color .2s
+		overflow: hidden
+		display: inline-block
+		+r(767)
+			width: 9.25rem
+			height: 6.75rem
+		&:after
+			content: ""
+			position: absolute
+			top: 0
+			bottom: 0
+			left: 0
+			right: 0
+			background-color: transparent
+			transition: background-color .2s
+		img
+			width: 100%
+			height: auto
+			position: relative
+			z-index: 0
+			display: inline-block
+			border-radius: 5px
+	.slick-current
+		.gallery__img
+			border-color: #ffba00
+			overflow: hidden
+			&:after
+				background-color: rgba(#ffba00,.7)
+	.slick-next
+		right: 0
+	.slick-prev
+		left: 0
+.gallery-sync
+	&__img
+		width: 100%
+		height: 36rem
+		border-radius: 7px
+		border: 1px solid #ebebeb
+		overflow: hidden
+		text-align: center
+		display: inline-block
+		+r(767)
+			height: 23.5rem
+		img
+			width: 100%
+			height: auto
+			position: relative
+			z-index: 0
+			border-radius: 7px
+.small-product
+	visibility: hidden 
+	opacity: 0
+	margin-bottom: 3rem
+	+r(767)
+		margin-bottom: 5.2rem
+	&.is-ready
+		visibility: visible
+		opacity: 1
+	&__slide
+		vertical-align: top
+		padding: 1rem .5rem 
+	.slick-list
+		margin: -1rem -0.5rem 
+	.slick-dots
+		bottom: -2.1rem 
+	.slick-prev
+		top: auto
+		bottom: -2.4rem
+		left: 0
+		z-index: 10
+	.slick-next
+		top: auto 
+		bottom: -2.4rem
+		right: 0
+		z-index: 10
+.vertical-product
+	margin-top: 2.9rem
+	height: 100%
+	+r(767)
+		margin: 1.5rem 0 3.5em
+	.slick-list
+		padding: 0 1rem 
+		margin: 0 -1rem 
+		+r(767)
+			padding: 1rem 0 0 0
+			margin: -1rem 0 0 0
+	.card
+		margin: 0
+		+r(767)
+			margin: 0 auto
+		&:hover
+			margin: 0 
+			box-shadow: none
+			+r(767)
+				margin: 0 auto
+			.card__in
+				padding: 2rem 2rem 1rem
+				+r(767)
+					padding: 1.2rem 1.2rem .5rem 
+	.card__bottom
+		position: static
+		height: auto
+	.card__hover
+		position: static
+		visibility: visible
+		opacity: 1 
+		box-shadow: none
+		padding-top: 0
+	.card__in
+		padding: 2rem 2rem 1rem
+		border-radius: .7rem .7rem 0 0
+		padding-bottom: 1rem
+		+r(767)
+			padding: 1.2rem 1.2rem .5rem  
+
+	.slick-prev,
+	.slick-next		
+		left: 50%
+		margin-left: -.9rem 
+		&:before
+			+rotate(90deg)
+			+r(767)
+				+rotate(0)
+		+r(767)
+			bottom: -3.5rem !important
+			top: auto
+			margin-top: -0.9rem
+	.slick-prev
+		top: -.5rem 
+		+r(767)
+			top: auto
+			left: 1.3rem		
+	.slick-next
+		bottom: -.9rem
+		top: auto
+		right: auto
+		+r(767)
+			right: .6rem
+			left: auto
+	.slick-dots
+		bottom: -3.5rem 
+	&__slide
+		padding: 1rem 0
+		&:hover
+			z-index: 100
+			position: relative
+		+r(767)
+			padding: 0 .5rem 
+			
+.menu-mob
+	position: fixed
+	width: 25.3rem
+	top: 0
+	bottom: 0
+	right: 0
+	z-index: 30
+	padding: 3.25rem 0 1rem
+	box-shadow: 4px 0 8px rgba(#000,.1) inset 
+	background-color: $main-dark  
+	overflow-y: auto
+	transition: transform .3s
+	transform: translate3d(100%,0,0)
+	+r(320)
+		width: 22rem
+	&__menu
+		a
+			display: block
+			padding: 2rem 1.5rem
+			background-color: transparent
+			border-bottom: 1px solid rgba(#fff,.1) 
+			font-size: 1.6rem
+			color: #FFF
+			+reg
+			text-transform: uppercase 
+			transition: background-color .2s
+			letter-spacing: 0
+			&:hover
+				background-color: $red
+			&:active
+				background-color: $red-hover   
+			+r(374)
+				font-size: 1.4rem 
+				padding: 1rem 1.5rem 
+	&__scroll
+		height: 100%
+		overflow-y: auto
+		overflow-x: hidden
+	.icon-phone
+		&:before
+			font-size: 5rem
+			+r(374)
+				font-size: 4rem
+	.app
+		margin: 2rem 0 0 2rem
+		span
+			width: 9rem
+			line-height: 1
+			font-size: 1.5rem
+			+reg
+			+r(374)
+				font-size: 1.3rem
+
+	&__bottom
+		margin-top: 4rem
+		a
+			font-size: 1.4rem
+			color: #FFF
+			text-transform: uppercase  
+			padding: .5rem 2rem
+			display: block 
+			+reg
+			letter-spacing: .2px 
+			transition: color .2s
+			&:hover,
+			&:active
+				color: $red
+			+r(320)
+				font-size: 1.2rem 
+				padding: 1rem 1.5rem
+.journal
+	width: 22rem
+	display: block
+	border-right: 2px solid #838283
+	height: 30.5rem 
+	box-shadow: .2rem .5rem 3.5rem rgba(#503333, .4) 
+	position: relative
+	overflow: hidden 
+	+r(767)
+		width: 18.6rem
+		height: 25.9rem 
+	&:before
+		content: ""
+		position: absolute
+		right: 0
+		top: -2px
+		+arr(20,31, rgba(#503333,.1),br)	
+	img
+		width: 100%
+		height: auto
+.mag
+	text-align: center 
+	display: block
+	.journal
+		overflow: visible
+		margin: 0 auto
+		+r(767)
+			width: 13rem
+			height: 18rem
+		&:before
+			+r(767)
+				+arr(12.5,18,rgba(#503333,.1),br)
+		&:after
+			content: ""
+			position: absolute
+			background-color: #ffde00
+			height: 29rem 
+			width: 29rem  
+			border-radius: 50%
+			z-index: -1 
+			top: 50%
+			left: 50%
+			margin: -14.5rem 0 0 -14.5rem
+			transition: background-color .2s
+			+r(767)
+				height: 18.2rem 
+				width: 18.2rem 
+				margin: -9.1rem 0 0 -9.1rem
+	&:hover,
+	&:active
+		.journal
+			&:after
+				background-color: $yellow 
+	&__in
+		display: inline-block
+	&__name
+		+italic
+		color: $text
+		font-size: 1.4rem
+		text-align: center
+		margin-top: 3rem
+		// width: 29rem
+		+r(767)
+			font-size: 1rem
+			width: 100%
+			text-align: left 
+			margin-top: 1.8rem
+.card
+	position: relative
+	transition: box-shadow .2s, margin .3s
+	border-radius: .7rem
+	margin-bottom: 2rem 
+	&:hover
+		box-shadow: 0px -1px 2px 1px #e0e1e2
+		z-index: 10
+		margin: 0rem -1rem 2rem
+		+r(1000)
+			box-shadow: none
+			margin: 0rem 0rem 2rem 
+		+r(374)
+			margin: 0 auto 1rem
+		.card__hover
+			visibility: visible
+			opacity: 1
+		.card__in
+			border-radius: .7rem .7rem 0 0
+			padding: 2rem 3rem 
+			+r(1000)
+				padding: 2rem 2rem 1rem
+			+r(767)
+				padding: 1.2rem 1.2rem .5rem 
+	+r(373)
+		width: 22.5rem
+		margin: 0 auto 1rem
+			
+	&__in
+		padding: 2rem
+		background-color: $main-light
+		border-radius: .7rem
+		transition: padding .3s
+		+r(1000)
+			border-radius: .7rem .7rem 0 0
+			padding-bottom: 1rem 
+		+r(767)
+			padding: 1.2rem 1.2rem .5rem 
+	&__img
+		width: 100%
+		height: 14.5rem
+		overflow: hidden 
+		display: block
+		border-radius: .5rem
+		img
+			width: 100%
+			height: auto 
+		+r(767)
+			height: 11.7rem
+	&__name
+		display: block
+		text-align: center
+		margin-top: 1rem
+		font-size: 1.4		 
+		span
+			font-size: 1.4rem
+			color: #212121
+			+reg
+			border-bottom: 1px solid #212121
+			transition: border-color .2s
+			line-height: 0
+			+r(767)
+				font-size: 1.15rem
+		&:hover
+			span
+				border-color: transparent
+	&__info	
+		+italic
+		color: $main-grey
+		font-size: 0
+		text-align: center
+		margin-top: 1.1rem
+		span
+			font-size: 1.5rem
+		+r(767)
+			display: none
+	&__price
+		font-size: 0
+		+reg
+		color: $red
+		text-align: center
+		span
+			font-size: 2.5rem
+			+r(767)
+				font-size: 2.25rem 
+	&__sale
+		color: $yellow-hover
+		+bold
+		font-size: 1.6rem
+		text-align: center
+		text-transform: uppercase
+		margin-top: 1rem
+		+r(768)
+			font-size: 1.3rem
+			+reg 
+	&__hover
+		position: absolute
+		top: -1.9rem 
+		padding: 1rem 
+		width: 100%
+		background-color: #edeff0
+		border-radius: 0 0 .7rem .7rem 
+		text-align: center
+		visibility: hidden
+		opacity: 0 
+		transition: opacity .3s
+		box-shadow: 0 2px 2px  1px #e0e1e2
+		+r(1000)
+			position: static
+			visibility: visible
+			opacity: 1 
+			box-shadow: none
+			padding-top: 0 
+	&__bottom
+		position: absolute
+		height: 1px
+		bottom: 0
+		right: 0
+		left: 0
+		+r(1000)
+			position: static
+			height: auto
+	&_counter
+		.card__in
+			border-radius: .7rem .7rem 0 0
+			padding-bottom: 1rem
+		&:hover
+			box-shadow: none
+			z-index: 10
+			margin: 0 0 2rem
+			+r(374)
+				margin: 0 auto 1rem
+
+			.card__hover
+				visibility: hidden
+				opacity: 0
+			.card__in
+				border-radius: .7rem .7rem 0 0
+				padding: 2rem 2rem 1rem
+				+r(1000)
+					// padding: 2rem 
+				+r(767)
+					padding: 1.2rem 1.2rem 1rem
+				
+.counter
+	width: 100%
+	padding: .8rem 2rem .8rem 2rem
+	background-color: #989d9f
+	border-radius: 0 0 .7rem .7rem
+	color: #FFF
+	font-size: 1.6rem
+	+bold 
+	white-space: nowrap
+	+r(767)
+		padding: .8rem 1rem
+		font-size: 1.3rem 
+		text-align: center
+		+reg
+	i
+		vertical-align: middle
+		display: inline-block
+.countdown
+	vertical-align: middle
+	display: inline-block
+	margin-left: 1rem
+	font-size: 1.6rem
+	+bold
+	+r(767)
+		font-size: 1.3rem 
+		margin-left: 0
+		letter-spacing: 0
+		+reg
+
+.icon-count
+	+icon
+	font-size: 3.2rem
+	color: #fff
+	display: inline-block  
+	+r(767)
+		font-size: 2.3rem
+.sidebar
+	background-color: $sidebar
+	padding: 3rem 1.5rem
+	width: 100%
+	border-radius: .5rem
+	margin-bottom: 2rem
+	+r(1000)
+		display: none
+	li
+		margin-top: 1.5rem
+		&:first-child
+			margin-top: 0
+		a
+			color: #fff
+			font-size: 1.4rem
+			+reg
+			border-bottom: 1px solid #fff
+			transition: color .2s, border-color .2s
+			letter-spacing: .2px
+			vertical-align: middle
+			&:hover
+				border-color: transparent
+				color: $yellow-hover
+		span
+			color: #FF9C00
+			font-size: 1.3rem
+			+italic 
+			vertical-align: middle
+	
+.sidebar-mob	
+	position: fixed
+	z-index: 30
+	left: 0
+	top: 0
+	bottom: 0
+	width: 30rem 
+	transform: translateX(-30rem)
+	transition: transform .3s
+	background: $sidebar 
+	&__scroll
+		height: 100%
+		overflow-y: auto
+		overflow-x: hidden
+	+r(350)
+		width: 22rem
+		transform: translateX(-22rem)
+	li
+		border-bottom: 1px solid #5d5859
+	a
+		display: block
+		padding: 1.7rem 1.5rem 1.5rem 
+		font-size: 1.5rem		
+		transition:  color .2s
+		+reg
+		color: #fff
+		text-transform: uppercase 
+		+r(350)
+			font-size: 1.15rem
+		&:hover
+			color: $yellow
+		&:active
+			background-color: rgba($sidebar,.7) 
+
+	span
+		+italic
+		color: $yellow
+	.btn-close
+		position: absolute
+		transform: translateX(0)
+		top: 50%
+		right: 0
+		margin-top: -2rem
+		width: 4rem
+		height: 4rem
+		border-radius: 0 4px 4px 0 
+		background: $sidebar 
+		+tr(transform .3s)
+// .btn-close
+// 	position: absolute
+// 	right: 0
+// 	top: 50%
+// 	margin-top: -1rem
+// 	background: none 
+// 	width: 2rem
+// 	height: 2rem 
+// 	+r(1000)
+// 		right: 2.3rem
+// 	&__in
+// 		height: .3rem
+// 		width: 2rem
+// 		position: absolute
+// 		top: auto
+// 		background-color: #ff181f
+// 		border-radius: 2px
+// 		transition: background-color .2s
+// 		+rotate(45deg)
+// 		&.is-oposite
+// 			+rotate(-45deg)
+.sidebar-btn
+	position: relative
+	width: 100%
+	height: 5rem
+	display: none
+	margin: 1.5rem 0
+	&__in
+		position: absolute
+		left: -20%
+		right: -3rem		
+		cursor: pointer
+		padding: 1.5rem 0 
+		padding-left: 20%
+		background-color: #4c4849 
+		transform: translateX(-3rem)
+		text-align: center		
+		border-radius: 0 5px 5px 0
+		transition: background-color .2s
+		+bold
+		span
+			font-size: 1.15rem
+			color: #FFF
+			text-transform: uppercase 
+		.btn-close
+			right: auto
+			left: 3rem
+			visibility: none
+			opacity: 0
+			transition: opacity .2s 
+			&:before,
+			&:after
+				background-color: #fff 
+		&:hover,
+		&:active
+			background-color: rgba(#4c4849, .9)
+	+r(1000)
+		display: block
+	&.is-red
+		.sidebar-btn__in
+			background-color: $red-second
+			&:hover,
+			&:active
+				background-color: $red-hover
+		+r(1000)
+			display: none
+		+r(767)
+			display: block
+	&.is-opposite
+		.sidebar-btn__in
+			left: -3rem
+			right: -20%
+			padding-right: 20%
+			padding-left: 0 
+			transform: translateX(3rem)
+			border-radius: 5px 0 0 5px
+		.btn-close
+			right: 5rem
+			left: auto
+		+r(1000)
+			display: none
+		+r(767)
+			display: block
+.post
+	+clr
+	.border
+		clear: both
+	.text
+		margin-bottom: 0 
+		&.is-hidden-sm
+			+r(767)
+				display: none
+		&.is-shown-sm
+			display: none
+			+r(767)
+				display: block
+				clear: both
+	&__img
+		float: left
+		height: 15rem
+		width: 20.3rem 
+		overflow: hidden
+		border-radius: .5rem 
+		margin-right: 1.25rem
+		+r(767)
+			width: 15.4rem 
+			height: 11.3rem
+			margin-bottom: 1rem
+		img
+			width: 100%
+			height: auto
+	&__right
+		overflow: hidden
+	&__name
+		margin: 1rem 0 1.5rem 0 
+		a
+			+reg
+			font-size: 2rem
+			color: $main-dark
+			border-bottom: 1px solid $main-dark 
+			line-height: 1
+			transition: border-color .2s
+			&:hover
+				border-color: transparent
+			+r(767)
+				font-size: 1.5rem 
+.meta
+	color: $yellow-hover
+	font-size: 1.3rem
+	+reg
+	+r(767)
+		font-size: 1.25rem 
+.promo
+	display: block
+	width: 100%
+	height: 22.4rem
+	overflow: hidden
+	position: relative
+	border-radius:  5px
+	margin-bottom: 2rem
+	+r(767)
+		height: 16.6rem
+	&:hover
+		.promo__name
+			span
+				border-color: transparent
+				color: $yellow
+	img
+		width: 100%
+		height: auto 
+	&__name
+		position: absolute
+		right: 0
+		left: 0
+		bottom: 0
+		padding: 1.3rem 1.5rem
+		background-color: $main-dark
+		transition: background-color .2s
+		span
+			color: #fff
+			border-bottom: 1px solid #fff
+			font-size: 1.5rem
+			line-height: 1
+			transition: border-color .2s, color .2s
+			+reg  
+	&_small
+		height: 14.3rem
+		+r(1000)
+			width: 100%
+			height: 12rem
+			img
+				height: 100%
+				width: auto
+		+r(767)
+			height: 19.35rem
+			border-radius: 0 
+			margin: 0 -10% 2rem
+			width: auto	
+			img
+				height: auto
+				width: 100%
+		.promo__name
+			text-align: center
+			padding: 1rem 
+			span
+				border: none
+				+bold
+				text-transform: uppercase 
+.paginator
+	text-align: center
+	+r(767)
+		margin-bottom: 1.6rem
+		position: relative
+		width: 100%
+	&__pages
+		display: inline-block
+		vertical-align: middle
+	&__page
+		padding: 0 .4rem
+		display: inline-block
+		font-size: 0
+		&.is-active
+			a
+				border-color: $yellow
+				background-color: $yellow
+				&:hover
+					border-color: $yellow
+					background-color: $yellow
+			span
+				color: #fff
+		a
+			display: block
+			width: 2.6rem 
+			height: 2.6rem
+			border-radius: 50%
+			border: 2px solid #ddd
+			transition: border-color .2s
+			+vertical
+			&:hover
+				border-color: $yellow
+		span
+			font-size: 1.4rem
+			color: #bdbdbd
+			vertical-align: middle
+			+reg
+	&__prev,
+	&__next
+		height: 1.3rem
+		position: relative
+		vertical-align: middle
+		background: none
+		+r(767)
+			position: absolute
+			top: 50%
+			margin-top: -0.8rem
+			height: 1.6rem
+		&:before
+			+icon
+			font-size: 1.3rem
+			color: $yellow
+			transition: color .2s
+			+r(767)
+				font-size: 1.6rem
+		&:hover
+			&:before
+				color: $red
+		&.is-inactive
+			&:before
+				color: #ddd
+			&:hover
+				&:before
+					color: #ddd
+	&__prev
+		margin-right: 2rem
+		+r(767)
+				left: 0
+		&:before
+			content: $icon-arr-l
+			
+	&__next
+		margin-left: 2rem
+		+r(767)
+				right: 0
+		&:before
+			content: $icon-arr-r
+.paginator-review
+	&__page
+		display: inline-block
+		vertical-align: middle
+		font-size: 0
+		margin-left: 0.3rem
+		&:first-child
+			margin-left: 0
+		&.is-active
+			a
+				background-color: #494b50 
+				color: #fff
+				cursor: default
+				&:hover
+					color: #FFF 
+		&:hover
+			a
+				color: $yellow-hover
+		a
+			padding: .2rem .8rem
+			display: block
+			background-color: transparent
+			color: $text
+			+reg
+			font-size: 1.4rem
+			transition: color .2s
+			border-radius: 3px
+			+r(767)
+			font-size: 1.1rem
+		   
+
+.input
+	width: 100%
+	position: relative
+	input
+		width: 100%
+		height: 4.4rem
+		line-height: 4.4rem
+		border: 1px solid #ccc
+		padding: 0 1.5rem
+		color: $text
+		+reg
+		+r(767)
+			height: 3.7rem
+			line-height: 3.7rem
+			font-size: 1.6rem
+			
+	&__name
+		+bold
+		color: #545454
+		font-size: 1.8rem  
+		margin: 1.4rem 0 .4rem 
+		text-transform: uppercase 
+		+r(1000)
+			font-size: 1.5rem 
+		+r(767)
+			font-size: 1.35rem
+	&__file-btn
+		position: absolute
+		height: 4.4rem
+		line-height: 4.4rem 
+		padding: 0 2.5rem
+		font-size: 1.4rem
+		+bold
+		color: #fff
+		text-transform: uppercase   
+		background-color: #9f9f9f
+		right: 0
+		bottom: -.1rem 
+		transition: background-color .2s
+		+r(767)
+			font-size: 1.3rem 
+			height: 3.7rem
+			line-height: 3.7rem 
+		&:hover,
+		&:active
+			background-color: lighten(#9f9f9f,5%)
+	&__file
+		width: 100%
+		height: 4.4rem
+		line-height: 4.4rem
+		border: 1px solid #ccc
+		padding: 0 1.5rem
+		color: $text
+		position: relative
+		+reg
+		+r(767)
+			height: 3.7rem
+			line-height: 3.7rem
+	&.with-marg-b
+		margin-bottom: 2rem
+		 
+.textarea
+	width: 100%
+	position: relative
+	margin: 2rem 0 	
+	textarea
+		height: 20rem
+		border: 1px solid #ccc
+		padding: 3.5rem 2rem
+		width: 100% 
+		resize: none 
+		font-size: 1.4rem
+		+reg
+		color: $text
+.editor
+	width: 100%
+	img
+		width: 100%
+.info
+	color: $main-grey
+	font-size: 1.4rem 
+	+reg
+	margin: 1rem 0 
+	+r(767)
+		font-size: 1.2rem  
+.is-italic
+	+italic
+	span
+		+italic
+.code
+	margin: 1.5rem 0
+
+.breadcrumbs
+	margin-bottom: 1.5rem 
+	li
+		+text-overflow
+		display: inline-block
+		&:last-child
+			a
+				margin-right: 0
+				&:before
+					display: none
+
+	&__item
+		display: inline-block
+		margin-right: 2rem 
+		font-size: 1.2rem
+		color: $main-dark
+		+reg
+		border-bottom: 1px solid $main-dark 
+		transition: border-color .2s, color .2s
+		position: relative
+		line-height: 1 	
+		+r(768)
+			font-size: 1.05rem	
+		
+		&:before
+			content: "/"
+			position: absolute
+			color: $yellow
+			font-size: 1.2rem
+			right: -1.2rem 
+		&:hover
+			border-color: transparent
+			color: $yellow-hover
+		&.is-active
+			color: #5e5a5b
+			border-color: transparent
+			&:hover
+				color: #5E5A5B 
+.left
+	float: left
+.right
+	float: right
+.overflow
+	overflow: hidden
+.select-filter
+	display: inline-block
+	position: relative
+	vertical-align: middle
+	cursor: pointer
+	&:hover
+		.select-filter__btn
+			background-color: $yellow 
+			border-color: $yellow
+			&:after
+				+arr(.7,.4,#fff,b)
+	&:active
+		.select-filter__btn
+			background-color: $yellow-hover 
+			border-color: $yellow-hover
+			&:after
+				+arr(.7,.4,#fff,b)
+	+r(1000)
+		display: block
+		margin: 1rem 0
+	.is-arrow
+		display: inline-block
+		color: $red
+		font-size: 1.2rem
+		margin-left: 1rem
+	&.hidden-lg
+		display: none
+		+r(1000)
+			display: block
+	
+	&__field
+		width: 18.8rem 
+		height: 3.2rem
+		line-height: 3.2rem
+		position: relative
+		padding: 0 3rem 0 1rem 
+		border: 1px solid #ccc
+		overflow: hidden
+		+r(1000)
+			width: 100%
+		span
+			font-size: 1.3rem
+			color: #6B6B6B 
+			white-space: nowrap			
+			+reg
+			+r(767)
+				font-size: 1.15rem 
+	&__btn
+		position: absolute
+		width: 3.2rem
+		height: 3.2rem 
+		background-color: #fff 
+		top: -1px
+		right: -1px
+		transition: background-color .2s, border-color .2s
+		cursor: pointer
+		border-top: 1px solid #ccc
+		border-right: 1px solid #ccc
+		border-bottom: 1px solid #ccc
+		z-index: 11 
+		&:after
+			content: ""
+			position: absolute
+			+arr(.7,.4,$yellow,b)
+			top: 50%
+			right: 50%
+			margin: -.2rem -.3rem 0 0  
+			transition: border-color .2s
+	&__list
+		position: absolute
+		min-width: 25.7rem
+		border:  1px solid #ccc
+		top: 3.1rem
+		visibility: hidden 
+		opacity: 0
+		z-index: 13
+		max-height: 400px
+		overflow-y: auto
+		overflow-x: hidden
+		+r(1000)
+			max-height: 250px
+		+r(767)
+			max-height: 200px
+		+scrollbar
+			width: 4px
+			height: 4px
+			border-radius: 4px
+			background: #fff
+		+scrollbar-thumb
+			background: $yellow
+			border-radius: 4px
+		+scrollbar-track-piece     
+			border-radius: 4px
+		+r(1000)
+			min-width: 100%
+		li
+			cursor: pointer
+			padding: 1rem
+			font-size: 1.3rem
+			color: #6B6B6B 
+			background-color: #fff
+			white-space: nowrap 
+			+bold
+			transition: color .2s, background-color .2s
+			&:hover
+				background-color: $yellow 
+				color: #fff
+			&:active
+				background-color: $yellow-hover
+			+r(1000)
+				+reg
+			+r(767)
+				font-size: 1.1rem
+	&__name
+		+bold
+		color: #545454
+		font-size: 1.8rem  
+		margin: 1.4rem 0 .4rem 
+		text-transform: uppercase 
+		+r(1000)
+			font-size: 1.5rem 
+		+r(767)
+			font-size: 1.2rem
+	&.is-big
+		width: 100%
+		.select-filter__field
+			width: 100%
+			height: 4.4rem 
+			line-height: 4.4rem
+			+r(767)
+				height: 3.7rem
+				line-height: 3.7rem
+		.select-filter__btn
+			width: 4.4rem
+			height: 4.4rem 
+			+r(767)
+				height: 3.7rem
+				width: 3.7rem
+		.select-filter__list
+			width: 100%
+			top: 8.5rem
+			+r(767)
+				top: 5.8rem
+			li
+				font-size: 1.8rem
+				+r(767)
+					font-size: 1.4rem
+	&.is-small
+		width: 100%
+		.select-filter__field
+			width: 100% 
+			height: 3rem
+			line-height: 3rem
+		.select-filter__btn
+			width: 3rem
+			height: 3rem 
+		.select-filter__list
+			min-width: 100%
+			top: 2.9rem
+			li
+				font-size: 1.3rem 
+	&.is-numbers
+		.select-filter__field
+			width: 7rem
+			background-color: #FFF 
+		.select-filter__list
+			min-width: 7rem
+		  
+	&.is-active
+		.select-filter__btn
+			background-color: $yellow 
+			border-color: $yellow
+			border-right: 1px solid #ccc
+			&:after
+				+arr(.7,.4,#fff,b)
+		.select-filter__list
+			visibility: visible
+			opacity: 1
+.sort-wrap
+	display: none
+	+clr
+	+r(1000)
+		display: block
+	.is-numbers
+		margin-left: 1rem
+		+r(767)
+			margin-left: 0
+	.left 
+		width: 41rem
+		+r(767)
+			width: 81%
+		+r(420)
+			width: 79%
+		+r(376)
+			width: 78%
+		+r(350)
+			width: 22rem
+	
+.sort
+	margin: 1.2rem 0 2rem
+	padding: 1.6rem 2rem
+	background-color: #fff5dc 
+	+clr 
+	+r(1000)
+		display: none
+	.select-filter__field
+		width: 7rem
+		background-color: #FFF 
+	.select-filter__list
+		min-width: 7rem
+	.left
+		margin-top: 0.8rem
+	&__name
+		display: inline-block
+		font-size: 1.4rem
+		color: #6b6b6b
+		+bold
+		vertical-align: middle
+		+r(1000)
+			display: block
+	&__link
+		display: inline-block
+		position: relative
+		vertical-align: middle
+		color: $main-dark
+		border-bottom: 1px dotted $main-dark
+		transition: border-color .2s
+		margin-left: 1.8rem 
+		font-size: 1.4rem
+		line-height: 1
+		+bold
+		+r(1000)
+			margin-left: 0
+			margin-right: 1.8rem
+		&:after
+			content: ""
+			position: absolute
+			right: -1.2rem
+			top: 50%
+			margin-top: -.2rem 
+			+arr(.6,.4,#cbcbcb,t)
+		&:hover
+			border-color: transparent
+			color: $main-dark
+		&:focus
+			color: $main-dark
+		&.is-active
+			color: $red
+			border-color: $red 
+			&:after
+				+arr(.6,.4,$red,t)
+		&.is-sorted
+			&:after
+				+arr(.6,.4,$red,b)
+.item
+	+clr
+	.border
+		clear: both
+	&__img
+		float: left
+		width: 20.3rem
+		height: 14.9rem
+		border-radius: 7px
+		overflow: hidden
+		margin-right: 1.7rem
+		img
+			width: 100%
+			height: auto
+		+r(767)
+			width: 16.6rem
+			height: 12.3rem
+		+r(374)
+			width: 14rem
+			height: 11rem 
+			margin-right: 1.0rem
+	&__info
+		float: left
+		+r(1000)
+			float: none
+			overflow: hidden
+	&__right
+		float: right
+		width: 24rem
+		text-align: left
+		+r(1000)
+			float: none
+			display: block
+			clear: both
+			width: 100%
+			padding-top: 1.5rem 
+	&__name
+		color: $main-dark
+		font-size: 1.8rem
+		+bold
+		text-transform: uppercase
+		+r(767)
+			font-size: 1.5rem
+	&__info-name
+		display: block
+		margin-bottom: .7rem		
+		span
+			line-height: 1
+			+reg
+			color: $main-dark
+			font-size: 1.5rem  
+			border-bottom: 1px solid $main-dark
+			transition: border-color .2s
+			+r(767)
+				font-size: 1.25rem	
+		&:hover
+			span
+				border-color: transparent
+	&__info-price
+		color: $red
+		font-size: 2rem
+		text-transform: lowercase
+		margin-bottom: .7rem
+		+reg
+		+r(767)
+			font-size: 1.5rem
+	&__info-italic
+		+italic
+		color: $main-grey
+		font-size: 1.5rem
+		text-transform: lowercase 
+		margin-bottom: .9rem 
+	&__list
+		+r(1000)
+			height: 9rem 
+		div
+			margin-top: .2rem
+
+		span
+			color: $main-grey
+			font-size: 1.3rem
+			+reg
+			+r(767)
+				font-size: 1.15rem
+		a
+			color: $main-dark
+			border-bottom: 1px solid $main-dark
+			transition: border-color .2s
+			font-size: 1.3rem
+			+r(767)
+				font-size: 1.15rem
+			&:hover
+				border-color: transparent
+	&__md
+		+r(1000)
+			float: left
+			margin-right: 1.7rem
+			width: 16.6rem
+		+r(768)
+			margin-right: 1.5rem
+			width: 15rem
+		+r(374)
+			margin-right: 1rem
+			width: 14rem
+		
+	&__schedule
+		+r(1000)
+			overflow: hidden
+	&__wrap
+		+clr
+		padding-left: 1.8rem 
+		+r(374)
+			padding-left: 1rem
+	.to-hide
+		color: $main-grey
+		font-size: 1.3rem
+		+reg
+		+r(767)
+			font-size: 1.15rem
+	&_marked	
+		
+		+r(767)
+			margin-bottom: 1rem
+		.item__wrap
+			background-color: #f4f6f7 
+			border-radius: 10px
+			padding: 1.8rem 0 1.8rem 1.8rem 
+			position: relative
+
+			&:before
+				content: "↑" 
+				position: absolute
+				bottom: 0
+				right: 0
+				color: #FFF
+				background-color: $yellow-hover
+				border-radius: 5px 0 5px 0
+				padding: .3rem .8rem 
+				font-size: 1.5rem
+				+reg
+				text-align: center
+				vertical-align: middle    
+		.item__info-price
+			text-transform: none 
+		.border
+			+r(767)
+				display: none
+.to-show
+	color: $main-dark
+	transition: border-color .2s, opacity .2s
+	border-bottom: 1px dotted $main-dark
+	background: none
+	font-size: 1.3rem
+	line-height: 1
+	+r(767)
+		font-size: 1.15rem
+	&.is-active
+		display: none
+.to-hide
+	display: none
+	opacity: 0
+	transition: opacity .2s
+	&.is-active
+		display: inline-block
+		opacity: 1 
+.bar
+	width: 100%
+	border-radius: 7px
+	overflow: hidden
+	+r(1000)
+		display: none
+	&__item
+		border-top: 1px solid #5d5859
+		background-color: $sidebar	
+		a
+			padding: 1.2rem 1.8rem 
+			display: block
+			font-size: 1.3rem
+			color: #FFF
+			+bold
+			text-transform: uppercase 
+			transition: color .2s					
+		&:first-child
+			border-top: none
+			a
+				padding-top: 2rem
+		&:hover,
+		&:active
+			a
+				color: $yellow		
+		&.is-active
+			background-color: $yellow 
+			&:hover
+				a
+					color: #fff
+.id-card
+	padding: 1.8rem 		
+	background-color: $foot-bg
+	border-radius: 7px
+	+r(767)
+		padding: 1.5rem
+	&__item
+		padding-left: 2.5rem
+		position: relative
+		margin-bottom: 1.6rem
+		color: $text
+		i
+			position: absolute
+			top: 0
+			left: 0
+		.icon-coin
+			left: -.4rem 
+		span			
+			font-size: 1.4rem
+			+reg
+			+r(767)
+				font-size: 1.35rem 
+		.willbe-inline
+			+r(767)
+				display: inline-block
+				margin-left: .5rem
+				 
+	&__info
+		color: $main-dark
+	&__link
+		color: $main-dark
+		border-bottom: 1px solid $main-dark
+		transition: border-color .2s
+		line-height: 1
+		+reg
+		font-size: 1.4rem
+		+r(767)
+			font-size: 1.3rem
+		&:hover
+			border-color: transparent 
+			color: $main-dark
+.nav-tabs
+	margin-bottom: 2rem 
+	+r(767)
+		margin: 2rem 0 
+	li
+		display: inline-block
+		+r(530)
+			display: block	
+			margin-bottom: .7rem 		
+		&.active		
+			a	
+				background-color: $red
+				+r(530)
+					background-color: $red-second
+				&:after
+					opacity: 1	 
+			span
+				color: #fff
+				border-color: transparent							
+	a
+		border-radius: 3px
+		display: block	
+		padding: .8rem 1rem
+		position: relative
+		text-align: center
+		background-color: transparent
+		transition: background-color .3s		
+		+r(530)			
+			display: block
+			text-align: left
+			background-color: #dbddde
+			margin: 0 -10% 
+			padding: 1.5rem 0 1.5rem 10%
+		&:after
+			content: ""
+			position: absolute
+			+arr(1.4,.4, $red, b)
+			opacity: 0
+			transition: opacity .3s
+			bottom: -.4rem
+			left: 50%
+			margin-left: -0.7rem
+			+r(530)
+				+arr(1.4,.4, $red-second, b)
+				margin-left: 0
+				left: 13%
+		&:hover
+			span
+				border-color: transparent
+		&:active
+			color: #000
+			+r(530)
+				background-color: lighten(#dbddde,5%) 
+	span
+		+bold
+		color: $main-dark
+		border-bottom: 1px dotted $main-dark
+		transition: color .3s, border-color .3s
+		letter-spacing: 0
+		line-height: 1 
+		font-size: 1.4rem
+		+r(530)
+			font-size: 1.2rem
+			text-transform: uppercase 
+			border-bottom: none
+	&.is-big
+		span
+			font-size: 2.4rem
+			+r(767)
+				font-size: 1.2rem
+		a
+			padding: 1.1rem 2.4rem
+			+r(530)			
+				display: block
+				text-align: left
+				background-color: #dbddde
+				margin: 0 -10% 
+				padding: 1.5rem 0 1.5rem 10%
+.about
+	&__item
+		color: $text
+		font-size: 1.6rem
+		margin-bottom: 1.3rem
+		+reg 
+		+clr 
+		+r(767)
+			font-size: 1.5rem
+		&.with-select
+			width: 23rem 	
+	&__l		
+		display: inline-block
+		min-width: 6rem 
+	&__r
+		display: inline-block
+		text-align: right
+		width: 13rem
+		margin-left: 1rem
+		&.is-smaller
+			width: 8.5rem
+	.select-filter
+		text-align: left
+	&__wrap
+		width: 100%
+	.btn
+		margin-bottom: 1.5rem
+		+r(1000)
+			span
+				font-size: 1.1rem
+		+r(767)
+			margin-right: 2.5rem
+.price
+	font-size: 3.5rem
+	color: $red
+	+reg  	
+	+r(767)
+		font-size: 3rem	  
+.review-block
+	&__head
+		+clr
+		+r(768)
+			padding: 0 1rem 	
+		.btn-main
+			margin-left: 9rem
+			vertical-align: middle 
+			+r(767)
+				margin-left: 0
+				margin-top: 1rem
+	&__footer
+		+clr
+		margin-top: 2rem 
+		+r(768)
+			padding: 0 1rem 
+		+r(374)
+			padding-left: 1rem
+			  
+	.paginator-review
+		float: left
+		+r(374)
+			float: none
+	&__right
+		float: right
+		+r(374)
+			float: none
+			margin-top: 1rem
+
+.rating
+	display: inline-block
+	vertical-align: middle
+	&_big
+		.raty
+			img
+				width: 2.3rem
+				margin-left: 0.6rem
+	&__stars
+		display: inline-block
+		vertical-align: baseline
+		+clr
+	&__mark
+		display: inline-block
+		margin-left: 3rem
+		color: $main-dark
+		+reg
+		font-size: 1.4rem
+		+r(767)
+			font-size: 1.2rem
+			margin-right: 2rem
+		+r(374)
+			margin: 0 0 0 .5rem 
+		span
+			text-decoration: underline 
+			display: inline-block
+			margin-right: 1rem
+		em
+			font-style: normal 		
+.raty
+	text-align: justify
+	white-space: nowrap
+	line-height: 0
+	font-size: 0
+	float: left
+	img 
+		width: 1.6rem
+		margin-left: .5rem
+		&:first-child
+			margin-left: 0 
+.review	
+	background-color: #f7f7f7
+	margin-top: 2.7rem 
+	+r(767)
+		margin-top: 1rem
+	&__main 			
+		padding: 2rem 1.9rem 
+		+r(767)
+			padding: 1.4rem 0 
+	&__title
+		color: $main-dark
+		font-family: Tahoma
+		font-size: 1.8rem
+		margin-bottom: 1.7rem
+		+r(767)
+			font-size: 1.5rem
+			margin-left: 1.4rem
+			margin-bottom: 1rem
+	.rating
+		+r(767)
+			margin-left: 1.4rem
+	&__name
+		margin: 0 2.5rem
+		+reg
+		color: #5C5C5C
+		font-size: 1.4rem
+		display: inline-block
+		vertical-align: middle
+		+r(767)
+			font-size: 1.2rem
+		+r(374)
+			margin: 0 
+			display: block
+			margin-left: 1.4rem
+			 
+	.meta
+		font-size: 1.4rem
+		color: #5C5C5C 
+		display: inline-block
+		vertical-align: middle
+		+r(767)
+			font-size: 1.2rem
+		+r(374)
+			margin-left: 1.4rem
+	&__text
+		line-height: 1.8
+		+italic
+		font-size: 1.4rem 
+		color: $text
+		margin-top: 1.3rem
+		+r(767)
+			font-size: 1.2rem
+			border-top: 1px solid #eaeaea
+			padding-left: 1.4rem 
+			margin-top: 1.3rem
+			padding-top: 1.3rem 
+	&__footer
+		border-top: 1px solid #eaeaea
+		padding: 1.4rem 2rem
+		+clr
+	&__right
+		float: right			 
+		.btn-feedback
+			display: inline-block
+			vertical-align: middle
+			margin-right: 1.2rem
+	&__mark
+		display: inline-block
+		+reg
+		font-size: 1.3rem
+		color: #5C5C5C
+		margin-right: 2.5rem 
+		+r(767)
+			font-size: 1.1rem
+			margin-right: 2rem
+		+r(374)
+			margin-right: 0
+			display: block
+.icon-yes
+	+svg(yes,1.4,1.3)
+.icon-no
+	+svg(no,1.4,1.3)
+.btn-feedback
+	span
+		display: inline-block
+		font-size: 1.3rem
+		vertical-align: middle
+		color: #838383 
+		+reg
+		+r(767)
+			font-size: 1.2rem
+	button
+		background: #fff
+		display: inline-block
+		border-radius: 3rem
+		padding: .5rem 1.1rem .4rem 
+		span
+			color: #5C5C5C
+			transition: color .2s
+		&:hover
+			span
+				color: #000			
+	i
+		display: inline-block
+		vertical-align: middle
+.searcher
+	width: 29rem
+	margin-left: .2rem
+	display: inline-block
+	vertical-align: middle
+	font-size: 0
+	position: relative
+	+r(1000)
+		width: 100%
+		display: block
+		margin: 1rem 0 
+	input
+		width: 100%
+		height: 3rem 
+		line-height: 3rem
+		border: 1px solid #cccccc
+		font-size: 1.3rem
+		+italic  
+		color: $text
+		padding: 0 3rem 0 1rem 
+		+r(767)
+			font-size: 1.6rem
+	&__btn
+		position: absolute
+		+s($searcher)
+		background-color: transparent 
+		top: 50%
+		margin-top: -5px
+		right: 1.2rem
+		display: inline-block 
+.section
+	width: 100%
+	padding: 0 1px 
+	position: relative
+	z-index: 20
+	+r(767)
+		display: none
+	&__item
+		border-top: 1px solid #fff
+		transition: background-color .2s
+		background-color: $red-second 
+		cursor: pointer
+		
+		&:first-child
+			border-top: none
+			border-radius: 7px	7px 0 0
+			+r(767)
+				border-radius: 0
+		&:last-child
+			border-radius: 0 0 7px 7px
+			+r(767)
+				border-radius: 0
+		
+		&:hover
+			background-color: $red-hover 
+		&.is-active
+			background-color: $red-hover  
+			.section__list
+				opacity: 1
+				visibility: visible 
+				 
+		span
+			font-size: 1.2rem
+			color: #FFF
+			+bold 
+			text-transform: uppercase 
+			line-height: 1.5
+			+r(350)
+				font-size: 1.2rem
+	&__relative
+		position: relative
+		padding: 1.5rem 4rem 1.3rem 5.5rem
+		&:after
+			content: ""
+			position: absolute
+			right: 1.5rem
+			top: 50%
+			margin-top: -.2rem
+			+arr(.3,.5,#fff,r)
+	&__list
+		position: absolute
+		left: 98%
+		top: 0
+		padding: 1rem 0
+		background-color: $red-hover
+		z-index: -1
+		width: 31.7rem
+		opacity: 0
+		visibility: hidden
+		
+		a
+			padding: 1rem 1rem 1rem 3.5rem
+			position: relative
+			background-color: $red-hover
+			font-size: 1.2rem
+			text-transform: uppercase
+			color: #FFF
+			transition: background-color .2s
+			display: block
+			position: relative
+			letter-spacing: 0
+			+bold 
+			&:before
+				content: "—"
+				+bold
+				position: absolute
+				top: .9rem
+				left: 1.5rem
+				color: #FFF
+			&:hover,
+			&:active
+				background-color: $red-second 
+			+r(767)
+				font-size: 1.1rem
+	&__icon
+		position: absolute
+		top: 50%
+		margin-top: -1.4rem
+		left: 1.8rem
+		height: 2.8rem
+		&:before
+			position: relative				
+			font-size: 2.8rem
+			+icon
+			color: #fff
+		&.icon-plumb
+			&:before
+				content: $icon-plumb
+		&.icon-drill
+			&:before
+				content: $icon-drill
+		&.icon-paint
+			&:before
+				content: $icon-paint
+		&.icon-brick
+			height: 2.5rem
+			&:before
+				content: $icon-brick
+				font-size: 2.5rem
+				margin-top: -1.25rem
+	&__name
+		border-bottom: 2px solid #fff
+		font-size: 1.8rem
+		+bold
+		text-transform: uppercase
+		padding: 2.1rem 0rem 1.5rem 1.5rem
+		letter-spacing: 0
+		color: #FFF 
+		+r(350)
+			font-size: 1.4rem
+.section-mob
+	display: none
+	+tr(transform .3s )
+	.section__item
+		border-top: none
+		border-bottom: 1px solid #fff
+		+r(767)
+			&.is-active
+				+r(767)
+					display: block 
+	.section__list
+		+r(767)
+			position: static
+			width: 100%
+			opacity: 1
+			visibility: visible
+			display: none
+	+r(767)
+		display: block
+		background-color: $red-second 
+		width: 28rem
+		transform: translateX(-28rem)
+		position: fixed
+		top: 0
+		z-index: 50
+		bottom: 0
+		left: 0
+		right: auto
+	+r(350)
+		width: 22rem
+		transform: translateX(-22rem)
+	&__scroll
+		height: 100%
+		overflow-y: auto
+		overflow-x: hidden
+	.btn-close
+		position: absolute
+		transform: translateX(0)
+		top: 50%
+		right: 0
+		margin-top: -2rem
+		width: 4rem
+		height: 4rem
+		border-radius: 0 4px 4px 0 
+		background: $red-second 
+		+tr(transform .3s)
+.filter
+	margin-top: 2rem
+	+r(767)
+		display: none
+	&__name
+		font-size: 2.3rem
+		color: #FFF
+		text-transform: uppercase
+		+bold
+		padding: 2rem 2rem 1.5rem
+		border-radius: 7px 7px 0 0 
+		background-color: #4c4849  
+		+r(767)
+			font-size: 2rem
+	&__link
+		display: block
+		position: relative
+		padding: 2rem 2rem 2rem 1.5rem
+		background: #4c4849
+		font-size: 1.6rem
+		+bold
+		color: #FFF
+		text-transform: uppercase
+		border-top: 1px solid #5d5859 
+		transition: border-color .2s
+		+r(350)
+			font-size: 1.4rem
+		&:hover
+			color: #fff
+			background-color: #464243 
+		&:focus
+			color: #fff 
+		&.is-open
+			background-color: #464243
+			.filter__icon
+				&:after
+					+rotate(0deg)
+					
+	&__icon
+		position: absolute
+		height: 1rem
+		width: 1rem
+		right: 2rem
+		top: 50%
+		margin-top: -0.5rem
+		&:before,
+		&:after
+			content:""  
+			position: absolute
+			width: 1rem
+			height: .2rem
+			background-color: $yellow  
+		&:before
+			left: 0
+			top: 0
+			
+		&:after
+			left: 0
+			top: 0
+			transition: transform .2s
+			+rotate(90deg)
+	&__content  
+		background-color: #464243
+		padding: 0 1.5rem 2rem 
+	&__price
+		input
+			display: inline-block
+			width: 7rem
+			height: 3.1rem
+			line-height: 3.1rem
+			background-color: #FFF
+			padding: 0 1rem
+			vertical-align: middle
+			+reg
+			font-size: 1.4rem
+			color: #757474
+			+r(350)
+				width: 6rem
+				font-size: 1.2rem
+		span
+			color: #fff
+			display: inline-block
+			font-size: 1.3rem
+			vertical-align: middle 
+			+reg
+			+r(350)
+				font-size: 1.2rem
+		em
+			font-style: normal
+			color: #FFF
+			font-size: 1.1rem
+			display: inline-block
+			margin-left: 0.8rem
+			+reg
+			&:first-child
+				margin-left: 0
+			+r(350)
+				font-size: 1rem
+				margin-left: 0.5rem
+	&__btns
+		padding: 1.7rem 0 1.5rem
+		width: 100%
+		background-color: #4c4849 
+		border-top: 1px solid #5d5859 
+		border-radius: 0 0 7px 7px
+		text-align: center
+		.btn
+			margin-bottom: 1.3rem
+			&:last-child
+				margin-bottom: 0
+
+.filter-check
+	display: block
+	position: relative
+	cursor: pointer
+	margin-bottom: 1.5rem
+	&__text
+		font-size: 1.5rem
+		+reg
+		cursor: pointer
+		color: #FFF
+		padding-left: 3rem  
+		display: inline-block
+		vertical-align: middle
+		+nosel
+		i
+			position: absolute
+			left: 0
+			height: 2.4rem 
+			width: 2.4rem
+			vertical-align: middle
+			background-color: #FFF 
+			&:before
+				content: ""
+				position: absolute
+				display: none !important
+				margin: -.6rem 0 0 -.85rem
+				+svg(checked,1.75,1.25)
+				top: 50%
+				left: 50%
+
+	input
+		position: absolute
+		opacity: 0
+		&:checked
+			+ span
+				i
+					&:before
+						display: block !important
+.filter-mob
+	display: none
+	+r(767)
+		display: block
+		background-color: #4c4849 
+		width: 28.9rem
+		transform: translateX(28.9rem)
+		position: fixed
+		top: 0
+		z-index: 50
+		bottom: 0
+		right: 0
+		margin-top: 0
+		+tr(transform .3s)
+	+r(350)
+		width: 22rem
+		transform: translateX(22rem)
+	&__scroll
+		+r(767)
+			height: 100%
+			overflow-y: auto
+			overflow-x: hidden
+	.btn
+		display: block
+		margin: 1rem 3rem
+	.btn-close
+		+r(767)
+			display: block
+			right: auto
+			left: 0
+			transform: translateX(0)
+			top: 50%
+			right: 0
+			margin-top: -2rem
+			width: 4rem
+			height: 4rem
+			border-radius: 4px 0 0 4px 
+			background: #4c4849
+			+tr(transform .3s)
+.checkbox
+	position: relative
+	cursor: pointer
+	display: inline-block
+	text-align: left
+	margin-left: 1.5rem
+	&:first-child
+		margin-left: 0 
+	+r(426)
+		display: block
+		margin-left: 0
+	&__text
+		font-size: 1.6rem 
+		+bold
+		color: #545454
+		text-transform: uppercase
+		+transition(color .2s)
+		padding-left: 2.3rem 
+		display: inline-block
+		+nosel
+		letter-spacing: 0
+		+r(767)
+			font-size: 1.35rem 
+			padding-left: 1.7rem 
+		i
+			position: absolute
+			left: 0
+			top: .2rem
+			border: 1px solid #dedede
+			border-radius: 50%
+			height: 1.8rem
+			width: 1.8rem
+			background: #FFF
+			+transition(border-color .2s) 
+			+r(767)
+				height: 1.2rem
+				width: 1.2rem  
+				top: .3rem 
+			&:before
+				display: none
+				content: ""
+				position: absolute
+				left: 50%
+				top: 50%
+				margin: -.4rem 0 0 -.4rem
+				width: .8rem
+				height: .8rem
+				background-color: $yellow
+				border-radius: 50%
+				+r(767)
+					width: .6rem
+					height: .6rem
+					margin: -.3rem 0 0 -.3rem  
+	input
+		position: absolute
+		opacity: 0
+		&:checked
+			+ span
+				i
+					border-color: $yellow
+					&:before
+						display: block
+.ui-slider-handle
+	&:before
+		position: absolute
+		top: 50%
+		left: 50%
+		margin: -.4rem 0 0 -.4rem 
+.overlay
+	position: fixed
+	opacity: 0
+	visibility: hidden
+	top: 0
+	right: 0
+	bottom: 0
+	left: 0
+	+tr(opacity .3s)
+	background: rgba(#000,.8)
+	&_transparent
+		background: transparent 
+		opacity: 0
+		visibility: hidden
+		position: fixed
+		top: 0
+		right: 0
+		bottom: 0
+		left: 0
+		+tr(opacity .3s)
+.modal
+	position: fixed
+	top: 0
+	bottom: 0
+	right: 0
+	left: 0
+	background: rgba(#242122,.9) 
+	z-index: 100
+	padding: 4.5rem 0
+	visibility: hidden 
+	opacity: 0
+	transition: opacity .3s
+	&__scroll
+		height: 100%
+		overflow-y: auto
+		overflow-x: hidden
+		padding: 0 1.5rem  
+	&__title
+		color: #fff
+		font-size: 3.2rem 
+		position: relative
+		+reg	
+		.btn-close
+			right: 2rem
+			top: 0
+			margin-top: 0
+	&__search
+		width: 45rem
+		position: relative
+		margin: 3rem 0
+		input
+			border: 1px solid #fff
+			height: 4.2rem 
+			line-height: 4.2rem
+			padding: 0 5rem 0 2rem 
+			color: #FFF
+			+reg
+			font-size: 1.6rem
+			width: 100% 
+			background: none 
+		button
+			position: absolute
+			right: 1.8rem
+			top: 50%
+			margin-top: -0.7rem
+			width: 14px
+			height: 13px			
+			background-color: transparent 
+			+s($search-r)
+.region-wrap
+	column-count: 3
+	+r(1023)
+		column-count: 2
+	+r(767)
+		column-count: 1
+.abc
+	display: none
+	padding: 2rem 1.5rem 
+	margin: 2rem -1.5rem 1.5rem
+	background: #3b3637  
+	+r(480)
+		display: block
+	li
+		display: inline-block
+		position: relative
+		z-index: 2 
+		vertical-align: middle
+		padding: 1rem 
+		cursor: pointer
+		+nosel
+		font-size: 1.7rem
+		text-transform: uppercase
+		color: #fff 
+		&.is-active
+			&:before
+				content: ""
+				position: absolute
+				left: 0
+				top: 50%
+				margin-top: -1.5rem
+				width: 3rem
+				height: 3rem
+				background: $yellow  
+				border-radius: 50% 
+				z-index: -1
+.region
+	+r(480)
+		display: none
+		&.is-active
+			display: block
+	&__title
+		color: #e30611
+		font-size: 1.3rem
+		text-transform: uppercase 
+		+bold
+		margin: 1.3rem 0
+	&__item
+		margin-bottom: 1rem
+		&:last-child
+			margin-bottom: 0
+		a
+			color: #fff
+			font-size: 1.3rem
+			+reg 
+			transition: color
+			&:hover
+				color: $red 
+
+			 		 
+			 

@@ -1,0 +1,191 @@
+.header	
+	background-color: $main-dark
+	height: 4.3rem
+	line-height: 4.3rem 
+	transition: transform .3s
+	+r(768)
+		height: 3.25rem
+		line-height: 3.25rem 
+	+r(340)
+		line-height: 3.4rem
+		height: 3.4rem
+		text-align: left 
+	&__right
+		text-align: right
+		position: relative
+		// +r(340)
+		// 	text-align: center
+.popup
+	position: absolute
+	top: 100%
+	right: 0
+	padding: 2.1rem 2rem
+	background: $main-dark
+	border-top: 2px solid $yellow
+	z-index: 20
+	min-width: 35.5rem 
+	opacity: 0
+	visibility: hidden 
+	+r(374)
+		min-width: 32rem 
+	&:before
+		content: ""
+		position: absolute
+		top: -.6rem
+		right: 1rem
+		+arr(.7,.5,$yellow,t)
+	&.is-active
+		opacity: 1
+		visibility: visible 
+	&__input
+		margin-bottom: 2rem
+		span
+			display: inline-block
+			vertical-align: middle
+			color: #FFF
+			+reg
+			font-size: 1.4rem  
+			margin-right: 2rem
+			+r(374)
+				display: block
+				text-align: left
+				margin-right: 0
+				margin-bottom: 0.3rem
+		input
+			width: 23.5rem
+			height: 3.8rem
+			line-height: 3.8rem
+			padding: 0 1rem
+			color: $main-dark
+			+bold
+			font-size: 1.4rem 
+			
+			background-color: #FFF  
+			vertical-align: middle
+			display: inline-block
+			+r(374)
+				width: 100%
+	&__cover
+		+clr
+	&__link
+		color: $grey
+		font-size: 1.3rem
+		line-height: 1
+		border-bottom: 1px solid $grey
+		vertical-align: middle
+		float: left
+		transition: border-color .2s
+		&.is-right
+			float: right
+		&:hover
+			color: $grey
+			border-color: transparent 
+	&__btn
+		text-align: right
+		margin-top: 1rem
+.top-menu
+	font-size: 0
+	text-align: center
+	&__item
+		display: inline-block
+		margin-left: 2.5rem
+		vertical-align: middle
+		&:first-child
+			margin-left: 0
+		&:hover
+			span
+				border-color: $grey
+		&:active
+			span
+				color: darken($grey,10%)
+				border-color: darken($grey,10%)
+		a
+			display: inline-block
+			vertical-align: middle
+			padding-top: .4rem 
+		span
+			color: $grey
+			display: inline-block
+			font-size: 1.2rem
+			line-height: 1
+			+reg 
+			border-bottom: 1px dotted transparent
+			transition: border-color .2s, color .2s
+.link-action
+	display: inline-block
+	font-size: 0
+	vertical-align: middle
+	cursor: pointer
+	background-color: transparent 
+	&:hover
+		span
+			border-color: transparent
+		.btn-link-action
+			color: $yellow
+	&.no-dots
+		span
+			border-color: transparent
+			
+	span
+		color: #FFF
+		font-size: 1.1rem
+		+reg
+		display: inline-block 
+		border-bottom: 1px dotted #fff
+		line-height: 1 
+		vertical-align: middle
+		transition: border-color .2s	
+	i
+		color: $yellow 
+		vertical-align: middle
+		font-size: 1.4rem
+		transition: color .2s
+		margin: 0 .5rem 0 0
+		+r(768)
+			font-size: 1rem
+	
+.btn-link-action 
+	display: inline-block
+	background: none
+	margin: 0 .2rem
+	color: #FFF
+	transition: color .2s  
+	font-size: 1.1rem
+	+reg
+	vertical-align: middle 
+	&.is-active
+		color: $yellow 
+.app
+	display: inline-block
+	font-size: 0
+	vertical-align: middle
+	margin-left: 2rem 
+	span
+		display: inline-block
+		transition: color .2s
+		color: #fff
+		+reg
+		font-size: 1.2rem
+		vertical-align: middle
+		margin-left: 1.2rem
+	&:hover
+		span
+			color: $yellow
+		.icon-phone
+			&:before
+				color: $yellow 
+	&:active
+		span
+			color: $yellow-hover
+		.icon-phone
+			&:before
+				color: $yellow-hover
+.icon-phone
+	display: inline-block
+	vertical-align: middle
+	&:before
+		color: $red
+		font-size: 2.2rem
+		transition: color .2s
+		 
+

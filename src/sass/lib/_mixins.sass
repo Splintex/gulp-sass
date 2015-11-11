@@ -1,5 +1,7 @@
 =s($sprite)
 	+sprite($sprite)
+=sr($sprite)
+	+spriter($sprite)
 // width
 
 // height
@@ -71,7 +73,7 @@
 	@font-face
 		font-family: $alias
 		src: url("../fonts/" + $name + ".eot")
-		src: url("../fonts/" + $name + ".eot?#iefix") format("embedded-opentype"), url("../fonts/" + $name + ".woff2") format("woff2"), url("../fonts/" + $name + ".woff") format("woff"), url("../fonts/" + $name + ".ttf") format("truetype")
+		src: url("../fonts/" + $name + ".eot?#iefix") format("embedded-opentype"), url("../fonts/" + $name + ".woff") format("woff"), url("../fonts/" + $name + ".ttf") format("truetype")
 		font-weight: normal
 		font-style: normal
 // usage: 
@@ -170,11 +172,6 @@
 	-webkit-filter: grayscale(0%)
 
 =unselectable
-	-webkit-touch-callout: none
-	-webkit-user-select: none
-	-khtml-user-select: none
-	-moz-user-select: none
-	-ms-user-select: none
 	user-select: none
 
 =nosel
@@ -230,28 +227,28 @@
 	height: 0px
 	border-style: solid
 	@if $direction == t
-		border-width: 0 $width / 2 + px $height + px $width / 2 + px
+		border-width: 0 $width / 2 + rem $height + rem $width / 2 + rem
 		border-color: transparent transparent $bg transparent
 	@if $direction == r
-		border-width: $height / 2 + px 0 $height / 2 + px $width + px
+		border-width: $height / 2 + rem 0 $height / 2 + rem $width + rem
 		border-color: transparent transparent transparent $bg
 	@if $direction == b
-		border-width: $height + px $width / 2 + px 0 $width / 2 + px
+		border-width: $height + rem $width / 2 + rem 0 $width / 2 + rem
 		border-color: $bg transparent transparent transparent
 	@if $direction == l
-		border-width: $height / 2 + px $width + px $height / 2 + px 0
+		border-width: $height / 2 + rem $width + rem $height / 2 + rem 0
 		border-color: transparent $bg transparent transparent
 	@if $direction == tl
-		border-width: $height + px $width + px 0 0
+		border-width: $height + rem $width + rem 0 0
 		border-color: $bg transparent transparent transparent
 	@if $direction == tr
-		border-width: 0 $width + px $height + px 0
+		border-width: 0 $width + rem $height + rem 0
 		border-color: transparent $bg transparent transparent
 	@if $direction == br
-		border-width: 0 0 $height + px $width + px
+		border-width: 0 0 $height + rem $width + rem
 		border-color: transparent transparent $bg transparent
 	@if $direction == bl
-		border-width: $width + px 0 0 $height + px
+		border-width: $width + rem 0 0 $height + rem
 		border-color: transparent transparent transparent $bg
 // example
 // +arr(500,50, #000, l)
@@ -268,7 +265,9 @@
 =svg($name, $width, $height)
 	background: url("../img/svg/#{$name}.svg") no-repeat 0 0
 	//background-image: inline-image('icons/svg/'+$sprite+'.svg','image/svg'); // to switches sprites to base64, elegant
-	background-size: #{$width}px #{$height}px
-	width: #{$width}px
-	height: #{$height}px
+	background-size: #{$width}rem #{$height}rem
+	width: #{$width}rem
+	height: #{$height}rem
 	display: inline-block
+=svgi($name)
+	background: url("../img/svg/#{$name}.svg") no-repeat 0 0
